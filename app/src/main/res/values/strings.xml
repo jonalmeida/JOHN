@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">JOHN</string>
+    <string name="app_full_name">Just Another Hacker News</string>
+    <string name="title_newsitem_detail">Story</string>
+</resources>
