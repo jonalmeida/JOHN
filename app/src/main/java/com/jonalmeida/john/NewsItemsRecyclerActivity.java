@@ -16,15 +16,15 @@ import com.firebase.client.Firebase;
  * item details side-by-side using two vertical panes.
  * <p/>
  * The activity makes heavy use of fragments. The list of items is a
- * {@link NewsItemRecyclerFragment} and the item details
+ * {@link NewsItemsRecyclerFragment} and the item details
  * (if present) is a {@link NewsItemDetailFragment}.
  * <p/>
  * This activity also implements the required
- * {@link NewsItemRecyclerFragment.Callbacks} interface
+ * {@link NewsItemsRecyclerFragment.Callbacks} interface
  * to listen for item selections.
  */
-public class NewsItemRecyclerActivity extends FragmentActivity
-        implements NewsItemRecyclerFragment.Callbacks {
+public class NewsItemsRecyclerActivity extends FragmentActivity
+        implements NewsItemsRecyclerFragment.Callbacks {
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -46,7 +46,7 @@ public class NewsItemRecyclerActivity extends FragmentActivity
 
             // In two-pane mode, list items should be given the
             // 'activated' state when touched.
-            //((NewsItemRecyclerFragment) getSupportFragmentManager()
+            //((NewsItemsRecyclerFragment) getSupportFragmentManager()
             //        .findFragmentById(R.id.newsitem_list))
             //        .setActivateOnItemClick(true);
         }
@@ -56,7 +56,7 @@ public class NewsItemRecyclerActivity extends FragmentActivity
     }
 
     /**
-     * Callback method from {@link NewsItemRecyclerFragment.Callbacks}
+     * Callback method from {@link NewsItemsRecyclerFragment.Callbacks}
      * indicating that the item with the given ID was selected.
      */
     @Override

@@ -4,8 +4,11 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 
@@ -20,7 +23,10 @@ import com.jonalmeida.john.dummy.DummyContent;
  * Activities containing this fragment MUST implement the {@link Callbacks}
  * interface.
  */
-public class NewsItemRecyclerFragment extends Fragment {
+public class NewsItemsRecyclerFragment extends Fragment {
+
+    private RecyclerView mRecyclerView;
+    private LinearLayoutManager mLinearLayoutManager;
 
     /**
      * The serialization (saved instance state) Bundle key representing the
@@ -60,7 +66,7 @@ public class NewsItemRecyclerFragment extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public NewsItemRecyclerFragment() {
+    public NewsItemsRecyclerFragment() {
     }
 
     @Override

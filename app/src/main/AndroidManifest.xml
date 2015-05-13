@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".NewsItemRecyclerActivity"
+            android:name=".NewsItemsRecyclerActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,10 +21,10 @@
         <activity
             android:name=".NewsItemDetailActivity"
             android:label="@string/title_newsitem_detail"
-            android:parentActivityName=".NewsItemRecyclerActivity" >
+            android:parentActivityName=".NewsItemsRecyclerActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".NewsItemRecyclerActivity" />
+                android:value=".NewsItemsRecyclerActivity" />
         </activity>
     </application>
 
