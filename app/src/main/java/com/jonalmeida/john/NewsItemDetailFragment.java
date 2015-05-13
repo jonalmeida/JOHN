@@ -12,7 +12,7 @@ import com.jonalmeida.john.dummy.DummyContent;
 
 /**
  * A fragment representing a single NewsItem detail screen.
- * This fragment is either contained in a {@link NewsItemListActivity}
+ * This fragment is either contained in a {@link NewsItemRecyclerActivity}
  * in two-pane mode (on tablets) or a {@link NewsItemDetailActivity}
  * on handsets.
  */

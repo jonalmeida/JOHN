@@ -3,7 +3,7 @@
     android:layout_height="match_parent" android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp" android:baselineAligned="false"
     android:divider="?android:attr/dividerHorizontal" android:orientation="horizontal"
-    android:showDividers="middle" tools:context=".NewsItemListActivity">
+    android:showDividers="middle" tools:context=".NewsItemRecyclerActivity">
 
     <!--
     This layout is a two-pane layout for the NewsItems
@@ -12,7 +12,7 @@
     -->
 
     <fragment android:id="@+id/newsitem_list"
-        android:name="com.jonalmeida.john.NewsItemListFragment" android:layout_width="0dp"
+        android:name="com.jonalmeida.john.NewsItemRecyclerFragment" android:layout_width="0dp"
         android:layout_height="match_parent" android:layout_weight="1"
         tools:layout="@android:layout/list_content" />
 
