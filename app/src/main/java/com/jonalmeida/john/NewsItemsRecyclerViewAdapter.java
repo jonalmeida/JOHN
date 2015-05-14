@@ -74,9 +74,9 @@ public class NewsItemsRecyclerViewAdapter extends RecyclerView.Adapter<NewsItems
             mNewsItem = newsItem;
             title.setText(newsItem.title);
             url.setText(newsItem.url);
-            upvoteCount.setText(newsItem.upvoteCount);
+            upvoteCount.setText(Integer.toString(newsItem.upvoteCount));
             author.setText(newsItem.author);
-            commentCount.setText(newsItem.commentCount);
+            commentCount.setText(Integer.toString(newsItem.commentCount));
         }
 
         @Override

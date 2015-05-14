@@ -9,4 +9,12 @@ public class NewsItem implements Serializable {
     protected String author;
     protected int commentCount;
 
+    public NewsItem(String title, String url, int upvoteCount, String author, int commentCount) {
+        this.title = title;
+        this.url = url;
+        this.upvoteCount = upvoteCount;
+        this.author = author;
+        this.commentCount = commentCount;
+    }
+
 }

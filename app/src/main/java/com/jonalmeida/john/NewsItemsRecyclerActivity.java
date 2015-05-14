@@ -19,12 +19,8 @@ import com.firebase.client.Firebase;
  * {@link NewsItemsRecyclerFragment} and the item details
  * (if present) is a {@link NewsItemDetailFragment}.
  * <p/>
- * This activity also implements the required
- * {@link NewsItemsRecyclerFragment.Callbacks} interface
- * to listen for item selections.
  */
-public class NewsItemsRecyclerActivity extends FragmentActivity
-        implements NewsItemsRecyclerFragment.Callbacks {
+public class NewsItemsRecyclerActivity extends FragmentActivity {
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -55,30 +51,26 @@ public class NewsItemsRecyclerActivity extends FragmentActivity
 
     }
 
-    /**
-     * Callback method from {@link NewsItemsRecyclerFragment.Callbacks}
-     * indicating that the item with the given ID was selected.
-     */
-    @Override
-    public void onItemSelected(String id) {
-        if (mTwoPane) {
-            // In two-pane mode, show the detail view in this activity by
-            // adding or replacing the detail fragment using a
-            // fragment transaction.
-            Bundle arguments = new Bundle();
-            arguments.putString(NewsItemDetailFragment.ARG_ITEM_ID, id);
-            NewsItemDetailFragment fragment = new NewsItemDetailFragment();
-            fragment.setArguments(arguments);
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.newsitem_detail_container, fragment)
-                    .commit();
-
-        } else {
-            // In single-pane mode, simply start the detail activity
-            // for the selected item ID.
-            Intent detailIntent = new Intent(this, NewsItemDetailActivity.class);
-            detailIntent.putExtra(NewsItemDetailFragment.ARG_ITEM_ID, id);
-            startActivity(detailIntent);
-        }
-    }
+//    @Override
+//    public void onItemSelected(String id) {
+//        if (mTwoPane) {
+//            // In two-pane mode, show the detail view in this activity by
+//            // adding or replacing the detail fragment using a
+//            // fragment transaction.
+//            Bundle arguments = new Bundle();
+//            arguments.putString(NewsItemDetailFragment.ARG_ITEM_ID, id);
+//            NewsItemDetailFragment fragment = new NewsItemDetailFragment();
+//            fragment.setArguments(arguments);
+//            getSupportFragmentManager().beginTransaction()
+//                    .replace(R.id.newsitem_detail_container, fragment)
+//                    .commit();
+//
+//        } else {
+//            // In single-pane mode, simply start the detail activity
+//            // for the selected item ID.
+//            Intent detailIntent = new Intent(this, NewsItemDetailActivity.class);
+//            detailIntent.putExtra(NewsItemDetailFragment.ARG_ITEM_ID, id);
+//            startActivity(detailIntent);
+//        }
+//    }
 }
