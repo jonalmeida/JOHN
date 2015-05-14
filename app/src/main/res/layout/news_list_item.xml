@@ -4,36 +4,46 @@
 
     <TextView
         android:id="@+id/newsitem_title"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_toStartOf="@+id/newsitem_comment_count" />
 
     <TextView
         android:id="@+id/newsitem_upvote_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/newsitem_title" />
 
     <TextView
         android:id="@+id/newsitem_author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/newsitem_title"
         android:layout_toEndOf="@+id/newsitem_upvote_count" />
 
     <TextView
         android:id="@+id/newsitem_comment_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/newsitem_author" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignBottom="@+id/newsitem_url"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentBottom="false"
+        android:layout_alignWithParentIfMissing="false"
+        android:gravity="center" />
 
     <TextView
         android:id="@+id/newsitem_url"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/newsitem_upvote_count"
         android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true" />
+        android:layout_toStartOf="@+id/newsitem_comment_count" />
 
 
 </RelativeLayout>
