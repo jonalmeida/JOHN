@@ -3,6 +3,7 @@ package com.jonalmeida.john;
 import java.io.Serializable;
 
 public class NewsItem implements Serializable {
+    protected int id;
     protected String title;
     protected String url;
     protected int upvoteCount;
@@ -16,5 +17,4 @@ public class NewsItem implements Serializable {
         this.author = author;
         this.commentCount = commentCount;
     }
-
 }

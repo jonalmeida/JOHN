@@ -12,17 +12,17 @@ import java.util.List;
 
 public class NewsItemsRecyclerViewAdapter extends RecyclerView.Adapter<NewsItemsRecyclerViewAdapter.ViewHolder> {
     private LinkedList<NewsItem> mItemsList;
+    private LayoutInflater mInflater;
 
-    public NewsItemsRecyclerViewAdapter(List<NewsItem> newsItemList) {
+    public NewsItemsRecyclerViewAdapter(List<NewsItem> newsItemList, LayoutInflater inflater) {
         mItemsList = (LinkedList<NewsItem>) newsItemList;
+        mInflater = inflater;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.news_list_item, parent, false);
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
+        View v = mInflater.inflate(R.layout.news_list_item, parent, false);
+        return new ViewHolder(v);
     }
 
     @Override
@@ -35,16 +35,20 @@ public class NewsItemsRecyclerViewAdapter extends RecyclerView.Adapter<NewsItems
         return mItemsList.size();
     }
 
-    public void addItem(NewsItem newsItem) {
+    public void addItemAtEnd(NewsItem newsItem) {
+        addItem(newsItem, mItemsList.size());
+    }
+
+    public void addItem(NewsItem newsItem, int position) {
         mItemsList.push(newsItem);
-        notifyItemInserted(mItemsList.size() - 1);
-        notifyItemRangeChanged(mItemsList.size() - 1, mItemsList.size());
+        notifyItemInserted(position);
+//        notifyItemRangeChanged(position, mItemsList.size());
     }
 
     public NewsItem removeItem(int position) {
         NewsItem newsItem = mItemsList.remove(position);
         notifyItemRemoved(position);
-        notifyItemRangeChanged(position, mItemsList.size());
+//        notifyItemRangeChanged(position, mItemsList.size());
         return newsItem;
     }
 

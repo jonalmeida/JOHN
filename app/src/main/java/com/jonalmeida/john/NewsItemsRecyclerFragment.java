@@ -10,8 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
-import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -27,6 +27,8 @@ import java.util.LinkedList;
  * <p/>
  */
 public class NewsItemsRecyclerFragment extends Fragment {
+
+    private static final String TAG = "ItemsRecyclerFragment";
 
     private RecyclerView mRecyclerView;
     private NewsItemsRecyclerViewAdapter mAdapter;
@@ -45,27 +47,22 @@ public class NewsItemsRecyclerFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Firebase.setAndroidContext(getActivity().getApplicationContext());
         fb = new Firebase("https://hacker-news.firebaseio.com/v0");
         items = new LinkedList<>();
-        items.push(new NewsItem("Foo bar story title", "http://example.com", 9, "jonalmeida", 0));
-        items.push(new NewsItem("Foo bar story title", "http://example.com", 9, "jonalmeida", 0));
-        populateList();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_news_list_layout, container, false);
-        init(v);
+        mAdapter = new NewsItemsRecyclerViewAdapter(items, inflater);
+        init(v, inflater);
         return v;
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mAdapter = new NewsItemsRecyclerViewAdapter(items);
         mRecyclerView.setAdapter(mAdapter);
-        mAdapter.addItem(new NewsItem("Foo bar story title", "http://notexample.com", 9, "jonalmeida", 0));
     }
 
     @Override
@@ -85,21 +82,23 @@ public class NewsItemsRecyclerFragment extends Fragment {
         super.onSaveInstanceState(outState);
     }
 
-    private void init(View v) {
+    private void init(View v, LayoutInflater inflater) {
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mLinearLayoutManager = new LinearLayoutManager(getActivity());
+        mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(mLinearLayoutManager);
         // Do Firebase setting here
+        insertTopStories();
     }
 
-    private void populateList() {
+    private void insertTopStories() {
         fb.child("topstories").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d("RecycleFrag", "Full spitting: " + dataSnapshot.toString());
+                //Log.d(TAG, "Full spitting: " + dataSnapshot.toString());
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-//                    Log.d("RecycleFrag", ds.toString());
-                    Log.d("RecyclerFlag", "Value trying to add: " + ds.getValue().toString());
-                    insertNewsItem(ds);
+                    //Log.d(TAG, "Value trying to add: " + ds.getValue().toString());
+                    mAdapter.addItemAtEnd(new NewsItem(ds.getValue().toString(), "http://example.com", 0, "jonalmeida", 1));
                 }
             }
 
@@ -109,9 +108,4 @@ public class NewsItemsRecyclerFragment extends Fragment {
             }
         });
     }
-
-    private void insertNewsItem(DataSnapshot ds) {
-        items.push(new NewsItem(ds.getValue().toString(), "http://example.com", 0, "jonalmeida", 1));
-    }
-
 }
