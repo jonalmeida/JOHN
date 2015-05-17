@@ -6,17 +6,16 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
@@ -34,7 +33,7 @@ public class NewsItemsRecyclerFragment extends Fragment {
     private NewsItemsRecyclerViewAdapter mAdapter;
     private LinearLayoutManager mLinearLayoutManager;
 
-    private LinkedList<NewsItem> items;
+    private LinkedList<StoryItem> items;
     private Firebase fb;
 
     /**
@@ -92,13 +91,19 @@ public class NewsItemsRecyclerFragment extends Fragment {
     }
 
     private void insertTopStories() {
+        final StoryItem[] frontPageIds = new StoryItem[30];
+        Firebase fbItemRef;
         fb.child("topstories").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                int pos = 0;
                 //Log.d(TAG, "Full spitting: " + dataSnapshot.toString());
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     //Log.d(TAG, "Value trying to add: " + ds.getValue().toString());
-                    mAdapter.addItemAtEnd(new NewsItem(ds.getValue().toString(), "http://example.com", 0, "jonalmeida", 1));
+                    if (pos >= 30) break;
+                    frontPageIds[pos] = new StoryItem(ds.getValue().toString());
+                    updateStoryItem(frontPageIds[pos]);
+                    pos++;
                 }
             }
 
@@ -107,5 +112,44 @@ public class NewsItemsRecyclerFragment extends Fragment {
 
             }
         });
+//        for (int i=0; i < 30; i++) {
+//            final StoryItem storyItem = frontPageIds[i];
+//            fbItemRef = new Firebase("https://hacker-news.firebaseio.com/v0/item/" + storyItem.id);
+//            final Firebase finalFbItemRef = fbItemRef;
+//            fbItemRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(DataSnapshot dataSnapshot) {
+//                    storyItem.title = dataSnapshot.child("title").getValue(String.class);
+//                    storyItem.author = dataSnapshot.child("by").getValue(String.class);
+//                    storyItem.url = dataSnapshot.child("url").getValue(String.class);
+//                    mAdapter.addItemAtEnd(storyItem);
+//                    finalFbItemRef.removeEventListener(this);
+//                }
+//
+//                @Override
+//                public void onCancelled(FirebaseError firebaseError) {
+//
+//                }
+//            });
+//        }
+    }
+
+    private void updateStoryItem(final StoryItem storyItem) {
+            final Firebase fbItemRef = new Firebase("https://hacker-news.firebaseio.com/v0/item/" + storyItem.id);
+            fbItemRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    storyItem.title = dataSnapshot.child("title").getValue(String.class);
+                    storyItem.author = dataSnapshot.child("by").getValue(String.class);
+                    storyItem.url = dataSnapshot.child("url").getValue(String.class);
+                    mAdapter.addItemAtEnd(storyItem);
+                    fbItemRef.removeEventListener(this);
+                }
+
+                @Override
+                public void onCancelled(FirebaseError firebaseError) {
+
+                }
+            });
     }
 }

@@ -9,7 +9,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:textStyle="bold"
-        android:layout_toStartOf="@+id/newsitem_comment_count" />
+        android:layout_toStartOf="@+id/newsitem_comment_count"
+        android:singleLine="true"
+        android:ellipsize="end" />
 
     <TextView
         android:id="@+id/newsitem_upvote_count"
@@ -43,7 +45,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/newsitem_upvote_count"
         android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/newsitem_comment_count" />
+        android:layout_toStartOf="@+id/newsitem_comment_count"
+        android:singleLine="true"
+        android:ellipsize="end" />
 
 
 </RelativeLayout>

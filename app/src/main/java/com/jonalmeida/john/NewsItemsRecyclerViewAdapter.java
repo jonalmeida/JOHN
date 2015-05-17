@@ -11,11 +11,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class NewsItemsRecyclerViewAdapter extends RecyclerView.Adapter<NewsItemsRecyclerViewAdapter.ViewHolder> {
-    private LinkedList<NewsItem> mItemsList;
+    private LinkedList<StoryItem> mItemsList;
     private LayoutInflater mInflater;
 
-    public NewsItemsRecyclerViewAdapter(List<NewsItem> newsItemList, LayoutInflater inflater) {
-        mItemsList = (LinkedList<NewsItem>) newsItemList;
+    public NewsItemsRecyclerViewAdapter(List<StoryItem> storyItemList, LayoutInflater inflater) {
+        mItemsList = (LinkedList<StoryItem>) storyItemList;
         mInflater = inflater;
     }
 
@@ -35,28 +35,28 @@ public class NewsItemsRecyclerViewAdapter extends RecyclerView.Adapter<NewsItems
         return mItemsList.size();
     }
 
-    public void addItemAtEnd(NewsItem newsItem) {
-        addItem(newsItem, mItemsList.size());
+    public void addItemAtEnd(StoryItem storyItem) {
+        addItem(storyItem, mItemsList.size());
     }
 
-    public void addItem(NewsItem newsItem, int position) {
-        mItemsList.push(newsItem);
+    public void addItem(StoryItem storyItem, int position) {
+        mItemsList.push(storyItem);
         notifyItemInserted(position);
-//        notifyItemRangeChanged(position, mItemsList.size());
+        notifyItemRangeChanged(position, mItemsList.size());
     }
 
-    public NewsItem removeItem(int position) {
-        NewsItem newsItem = mItemsList.remove(position);
+    public StoryItem removeItem(int position) {
+        StoryItem storyItem = mItemsList.remove(position);
         notifyItemRemoved(position);
-//        notifyItemRangeChanged(position, mItemsList.size());
-        return newsItem;
+        notifyItemRangeChanged(position, mItemsList.size());
+        return storyItem;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private static final String TAG = "Adapter.ViewHolder";
 
-        public NewsItem mNewsItem;
+        public StoryItem mStoryItem;
 
         protected TextView title;
         protected TextView url;
@@ -74,18 +74,18 @@ public class NewsItemsRecyclerViewAdapter extends RecyclerView.Adapter<NewsItems
             v.setOnClickListener(this);
         }
 
-        public void bindItem(NewsItem newsItem) {
-            mNewsItem = newsItem;
-            title.setText(newsItem.title);
-            url.setText(newsItem.url);
-            upvoteCount.setText(Integer.toString(newsItem.upvoteCount));
-            author.setText(newsItem.author);
-            commentCount.setText(Integer.toString(newsItem.commentCount));
+        public void bindItem(StoryItem storyItem) {
+            mStoryItem = storyItem;
+            title.setText(storyItem.title);
+            url.setText(storyItem.url);
+            upvoteCount.setText(Integer.toString(storyItem.upvoteCount));
+            author.setText(storyItem.author);
+            commentCount.setText(Integer.toString(storyItem.commentCount));
         }
 
         @Override
         public void onClick(View view) {
-            if (mNewsItem != null) {
+            if (mStoryItem != null) {
                 Log.d(TAG, "Click all you want, shit ain't gonna work!");
             }
         }
