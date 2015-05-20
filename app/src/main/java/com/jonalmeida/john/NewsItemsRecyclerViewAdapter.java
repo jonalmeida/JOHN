@@ -7,10 +7,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.ocpsoft.prettytime.PrettyTime;
+
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-public class NewsItemsRecyclerViewAdapter extends RecyclerView.Adapter<NewsItemsRecyclerViewAdapter.ViewHolder> {
+public class NewsItemsRecyclerViewAdapter
+        extends RecyclerView.Adapter<NewsItemsRecyclerViewAdapter.ViewHolder>
+        implements ItemUpdateHelper.Update<StoryItem> {
     private LinkedList<StoryItem> mItemsList;
     private LayoutInflater mInflater;
 
@@ -40,7 +45,7 @@ public class NewsItemsRecyclerViewAdapter extends RecyclerView.Adapter<NewsItems
     }
 
     public void addItem(StoryItem storyItem, int position) {
-        mItemsList.push(storyItem);
+        mItemsList.add(position, storyItem);
         notifyItemInserted(position);
         notifyItemRangeChanged(position, mItemsList.size());
     }
@@ -52,25 +57,33 @@ public class NewsItemsRecyclerViewAdapter extends RecyclerView.Adapter<NewsItems
         return storyItem;
     }
 
+    @Override
+    public void update(StoryItem item) {
+        addItemAtEnd(item);
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private static final String TAG = "Adapter.ViewHolder";
+        private PrettyTime prettyTime = new PrettyTime();
 
         public StoryItem mStoryItem;
 
         protected TextView title;
         protected TextView url;
-        protected TextView upvoteCount;
+        protected TextView score;
         protected TextView author;
-        protected TextView commentCount;
+        protected TextView descendants;
+        protected TextView time;
 
         public ViewHolder(View v) {
             super(v);
             title = (TextView) v.findViewById(R.id.newsitem_title);
             url = (TextView) v.findViewById(R.id.newsitem_url);
-            upvoteCount = (TextView) v.findViewById(R.id.newsitem_upvote_count);
+            score = (TextView) v.findViewById(R.id.newsitem_score);
             author = (TextView) v.findViewById(R.id.newsitem_author);
-            commentCount = (TextView) v.findViewById(R.id.newsitem_comment_count);
+            descendants = (TextView) v.findViewById(R.id.newsitem_descendants);
+            time = (TextView) v.findViewById(R.id.newsitem_time);
             v.setOnClickListener(this);
         }
 
@@ -78,9 +91,10 @@ public class NewsItemsRecyclerViewAdapter extends RecyclerView.Adapter<NewsItems
             mStoryItem = storyItem;
             title.setText(storyItem.title);
             url.setText(storyItem.url);
-            upvoteCount.setText(Integer.toString(storyItem.upvoteCount));
-            author.setText(storyItem.author);
-            commentCount.setText(Integer.toString(storyItem.commentCount));
+            score.setText(Integer.toString(storyItem.score));
+            author.setText(storyItem.by);
+            descendants.setText(Integer.toString(storyItem.descendants));
+            time.setText(prettyTime.format(new Date(storyItem.time * 1000L)));
         }
 
         @Override

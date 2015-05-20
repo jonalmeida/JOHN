@@ -32,7 +32,8 @@ public class NewsItemsRecyclerActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Firebase.setAndroidContext(this);
+        //Firebase.setAndroidContext(this);
+        ItemUpdateHelper.getInstance().init(this);
         setContentView(R.layout.activity_newsitem_list);
 
         if (findViewById(R.id.newsitem_detail_container) != null) {

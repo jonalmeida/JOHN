@@ -2,52 +2,71 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/newsitem_title"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:textStyle="bold"
-        android:layout_toStartOf="@+id/newsitem_comment_count"
-        android:singleLine="true"
-        android:ellipsize="end" />
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/newsitem_upvote_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/newsitem_title" />
+        <RelativeLayout
+            android:id="@+id/foo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/newsitem_author"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/newsitem_title"
-        android:layout_toEndOf="@+id/newsitem_upvote_count" />
+            <TextView
+                android:id="@+id/newsitem_title"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:textStyle="bold"
+                android:layout_toStartOf="@+id/newsitem_descendants"
+                android:singleLine="true"
+                android:ellipsize="end" />
 
-    <TextView
-        android:id="@+id/newsitem_comment_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignBottom="@+id/newsitem_url"
-        android:layout_alignParentStart="false"
-        android:layout_alignParentBottom="false"
-        android:layout_alignWithParentIfMissing="false"
-        android:gravity="center" />
+            <TextView
+                android:id="@+id/newsitem_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/newsitem_title" />
 
-    <TextView
-        android:id="@+id/newsitem_url"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/newsitem_upvote_count"
-        android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/newsitem_comment_count"
-        android:singleLine="true"
-        android:ellipsize="end" />
+            <TextView
+                android:id="@+id/newsitem_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/newsitem_title"
+                android:layout_toEndOf="@+id/newsitem_score" />
 
+            <TextView
+                android:id="@+id/newsitem_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/newsitem_title"
+                android:layout_toEndOf="@+id/newsitem_author" />
+
+            <TextView
+                android:id="@+id/newsitem_descendants"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignBottom="@+id/newsitem_url"
+                android:layout_alignParentStart="false"
+                android:layout_alignParentBottom="false"
+                android:layout_alignWithParentIfMissing="false"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/newsitem_url"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/newsitem_score"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@+id/newsitem_descendants"
+                android:singleLine="true"
+                android:ellipsize="end" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
 
 </RelativeLayout>

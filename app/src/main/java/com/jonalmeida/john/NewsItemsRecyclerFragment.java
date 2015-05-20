@@ -15,8 +15,8 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
-import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * A list fragment representing a list of NewsItems. This fragment
@@ -102,7 +102,8 @@ public class NewsItemsRecyclerFragment extends Fragment {
                     //Log.d(TAG, "Value trying to add: " + ds.getValue().toString());
                     if (pos >= 30) break;
                     frontPageIds[pos] = new StoryItem(ds.getValue().toString());
-                    updateStoryItem(frontPageIds[pos]);
+                    ItemUpdateHelper.getInstance().queryUpdateProperties(frontPageIds[pos], mAdapter);
+                    //updateStoryItem(frontPageIds[pos]);
                     pos++;
                 }
             }
@@ -120,7 +121,7 @@ public class NewsItemsRecyclerFragment extends Fragment {
 //                @Override
 //                public void onDataChange(DataSnapshot dataSnapshot) {
 //                    storyItem.title = dataSnapshot.child("title").getValue(String.class);
-//                    storyItem.author = dataSnapshot.child("by").getValue(String.class);
+//                    storyItem.by = dataSnapshot.child("by").getValue(String.class);
 //                    storyItem.url = dataSnapshot.child("url").getValue(String.class);
 //                    mAdapter.addItemAtEnd(storyItem);
 //                    finalFbItemRef.removeEventListener(this);
@@ -132,24 +133,5 @@ public class NewsItemsRecyclerFragment extends Fragment {
 //                }
 //            });
 //        }
-    }
-
-    private void updateStoryItem(final StoryItem storyItem) {
-            final Firebase fbItemRef = new Firebase("https://hacker-news.firebaseio.com/v0/item/" + storyItem.id);
-            fbItemRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    storyItem.title = dataSnapshot.child("title").getValue(String.class);
-                    storyItem.author = dataSnapshot.child("by").getValue(String.class);
-                    storyItem.url = dataSnapshot.child("url").getValue(String.class);
-                    mAdapter.addItemAtEnd(storyItem);
-                    fbItemRef.removeEventListener(this);
-                }
-
-                @Override
-                public void onCancelled(FirebaseError firebaseError) {
-
-                }
-            });
     }
 }

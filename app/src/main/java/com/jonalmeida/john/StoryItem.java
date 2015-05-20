@@ -1,6 +1,8 @@
 package com.jonalmeida.john;
 
 import java.io.Serializable;
+import java.util.Map;
+
 /// To implement:
 // {
 //         "by" : "dhouston",
@@ -13,35 +15,87 @@ import java.io.Serializable;
 //         "type" : "story",
 //         "url" : "http://www.getdropbox.com/u/2/screencast.html"
 // }
-public class StoryItem implements Serializable {
-    protected int id;
+public class StoryItem extends Item implements Serializable {
+    protected String by;
+    protected int descendants;
+    protected int[] kids;
+    protected int score;
+    protected String text;
+    protected int time;
     protected String title;
+    protected String type;
     protected String url;
-    protected int upvoteCount;
-    protected String author;
-    protected int commentCount;
 
     public StoryItem() {
-        this.id = -1;
-        this.upvoteCount = -1;
-        this.commentCount = -1;
+        super();
+        this.score = -1;
+        this.descendants = -1;
     }
 
     public StoryItem(int id) {
-        this.id = id;
-        this.upvoteCount = -1;
-        this.commentCount = -1;
+        super(id);
+        this.score = -1;
+        this.descendants = -1;
     }
 
     public StoryItem(String id) {
-        this.id = Integer.parseInt(id);
+        super(id);
     }
 
-    public StoryItem(String title, String url, int upvoteCount, String author, int commentCount) {
+    public StoryItem(String title, String url, int score, String by, int descendants) {
         this.title = title;
         this.url = url;
-        this.upvoteCount = upvoteCount;
-        this.author = author;
-        this.commentCount = commentCount;
+        this.score = score;
+        this.by = by;
+        this.descendants = descendants;
+    }
+
+    public String getBy() {
+        return by;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public int getDescendants() {
+        return descendants;
+    }
+
+    public int getId() {
+        return super.id;
+    }
+
+    public int[] getKids() {
+        return kids;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public String toString() {
+        return " title: " + title +
+                " url: " + url +
+                " score: " + score +
+                " by: "  + by +
+                " descendants: " + descendants +
+                super.toString();
     }
 }
