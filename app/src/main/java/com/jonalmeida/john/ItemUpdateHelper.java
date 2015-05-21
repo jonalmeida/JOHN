@@ -30,11 +30,13 @@ public class ItemUpdateHelper {
         return null;
     }
 
-    private List<Item> queryItemIds(String relativeUrlPath, int id) {
+    private List<Item> queryItemIds(String relativeUrlPath, int id,
+                                    final Update<Item> returnUpdateItem ) {
+        Firebase firebaseRef = new Firebase(baseUrl + relativeUrlPath);
         return null;
     }
 
-    public void queryUpdateProperties(final Item item, final Update returnList) {
+    public void queryUpdateProperties(final Item item, final Update<Item> returnUpdateItem) {
         Firebase firebaseRef = new Firebase(itemUrl + item.id);
         firebaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -42,7 +44,7 @@ public class ItemUpdateHelper {
                 //Log.d(TAG, "dataSnapshot: " + dataSnapshot);
                 final StoryItem returnItem = dataSnapshot.getValue(StoryItem.class);
                 //Log.d(TAG, "returnItem: " + returnItem);
-                returnList.update(returnItem);
+                returnUpdateItem.update(returnItem);
             }
 
             @Override
@@ -56,6 +58,8 @@ public class ItemUpdateHelper {
 
     public interface Update<Item> {
         void update(Item item);
+
+        void updateList(List<Item> itemList);
     }
 
 }

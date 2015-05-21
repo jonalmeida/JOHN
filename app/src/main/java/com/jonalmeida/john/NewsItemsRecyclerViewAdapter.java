@@ -15,12 +15,12 @@ import java.util.List;
 
 public class NewsItemsRecyclerViewAdapter
         extends RecyclerView.Adapter<NewsItemsRecyclerViewAdapter.ViewHolder>
-        implements ItemUpdateHelper.Update<StoryItem> {
-    private LinkedList<StoryItem> mItemsList;
+        implements ItemUpdateHelper.Update<Item> {
+    private LinkedList<Item> mItemsList;
     private LayoutInflater mInflater;
 
-    public NewsItemsRecyclerViewAdapter(List<StoryItem> storyItemList, LayoutInflater inflater) {
-        mItemsList = (LinkedList<StoryItem>) storyItemList;
+    public NewsItemsRecyclerViewAdapter(List<Item> storyItemList, LayoutInflater inflater) {
+        mItemsList = (LinkedList<Item>) storyItemList;
         mInflater = inflater;
     }
 
@@ -40,26 +40,33 @@ public class NewsItemsRecyclerViewAdapter
         return mItemsList.size();
     }
 
-    public void addItemAtEnd(StoryItem storyItem) {
-        addItem(storyItem, mItemsList.size());
+    public void addItemAtEnd(Item item) {
+        addItem(item, mItemsList.size());
     }
 
-    public void addItem(StoryItem storyItem, int position) {
-        mItemsList.add(position, storyItem);
+    public void addItem(Item item, int position) {
+        mItemsList.add(position, item);
         notifyItemInserted(position);
         notifyItemRangeChanged(position, mItemsList.size());
     }
 
     public StoryItem removeItem(int position) {
-        StoryItem storyItem = mItemsList.remove(position);
+        StoryItem storyItem = (StoryItem) mItemsList.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, mItemsList.size());
         return storyItem;
     }
 
     @Override
-    public void update(StoryItem item) {
+    public void update(Item item) {
         addItemAtEnd(item);
+    }
+
+    @Override
+    public void updateList(List<Item> storyItems) {
+        for (Item i : storyItems) {
+            addItemAtEnd(i);
+        }
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -87,14 +94,14 @@ public class NewsItemsRecyclerViewAdapter
             v.setOnClickListener(this);
         }
 
-        public void bindItem(StoryItem storyItem) {
-            mStoryItem = storyItem;
-            title.setText(storyItem.title);
-            url.setText(storyItem.url);
-            score.setText(Integer.toString(storyItem.score));
-            author.setText(storyItem.by);
-            descendants.setText(Integer.toString(storyItem.descendants));
-            time.setText(prettyTime.format(new Date(storyItem.time * 1000L)));
+        public void bindItem(Item storyItem) {
+            mStoryItem = (StoryItem) storyItem;
+            title.setText(mStoryItem.title);
+            url.setText(mStoryItem.url);
+            score.setText(Integer.toString(mStoryItem.score));
+            author.setText(mStoryItem.by);
+            descendants.setText(Integer.toString(mStoryItem.descendants));
+            time.setText(prettyTime.format(new Date(mStoryItem.time * 1000L)));
         }
 
         @Override

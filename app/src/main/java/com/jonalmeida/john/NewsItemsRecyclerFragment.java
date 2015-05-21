@@ -16,7 +16,6 @@ import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * A list fragment representing a list of NewsItems. This fragment
@@ -33,7 +32,7 @@ public class NewsItemsRecyclerFragment extends Fragment {
     private NewsItemsRecyclerViewAdapter mAdapter;
     private LinearLayoutManager mLinearLayoutManager;
 
-    private LinkedList<StoryItem> items;
+    private LinkedList<Item> items;
     private Firebase fb;
 
     /**
