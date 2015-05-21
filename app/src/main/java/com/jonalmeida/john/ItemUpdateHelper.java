@@ -44,7 +44,7 @@ public class ItemUpdateHelper {
                     // TODO: Move '*' lines to `getTopStories`
                     if (pos >= 30) break; // *
                     final T i = ds.getValue(valueType);
-                    queryUpdateProperties((Item)i, returnUpdateItem); // *
+                    queryUpdateProperties(((Item)i).id, returnUpdateItem); // *
                     list.push((Item) i);
                     pos++; // *
                 }
@@ -57,8 +57,8 @@ public class ItemUpdateHelper {
         });
     }
 
-    public void queryUpdateProperties(final Item item, final Update<Item> returnUpdateItem) {
-        Firebase firebaseRef = new Firebase(itemUrl + item.id);
+    public void queryUpdateProperties(final int itemId, final Update<Item> returnUpdateItem) {
+        Firebase firebaseRef = new Firebase(itemUrl + itemId);
         firebaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
