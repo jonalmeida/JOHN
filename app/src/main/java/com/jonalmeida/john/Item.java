@@ -1,6 +1,6 @@
 package com.jonalmeida.john;
 
-public class Item {
+public abstract class Item {
     protected int id;
 
     public Item() {
@@ -18,4 +18,6 @@ public class Item {
     public String toString() {
         return " id: " + id;
     }
+
+    public abstract void updateThis(Item i);
 }

@@ -90,47 +90,6 @@ public class NewsItemsRecyclerFragment extends Fragment {
     }
 
     private void insertTopStories() {
-        final StoryItem[] frontPageIds = new StoryItem[30];
-        Firebase fbItemRef;
-        fb.child("topstories").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                int pos = 0;
-                //Log.d(TAG, "Full spitting: " + dataSnapshot.toString());
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    //Log.d(TAG, "Value trying to add: " + ds.getValue().toString());
-                    if (pos >= 30) break;
-                    frontPageIds[pos] = new StoryItem(ds.getValue().toString());
-                    ItemUpdateHelper.getInstance().queryUpdateProperties(frontPageIds[pos], mAdapter);
-                    //updateStoryItem(frontPageIds[pos]);
-                    pos++;
-                }
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-
-            }
-        });
-//        for (int i=0; i < 30; i++) {
-//            final StoryItem storyItem = frontPageIds[i];
-//            fbItemRef = new Firebase("https://hacker-news.firebaseio.com/v0/item/" + storyItem.id);
-//            final Firebase finalFbItemRef = fbItemRef;
-//            fbItemRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(DataSnapshot dataSnapshot) {
-//                    storyItem.title = dataSnapshot.child("title").getValue(String.class);
-//                    storyItem.by = dataSnapshot.child("by").getValue(String.class);
-//                    storyItem.url = dataSnapshot.child("url").getValue(String.class);
-//                    mAdapter.addItemAtEnd(storyItem);
-//                    finalFbItemRef.removeEventListener(this);
-//                }
-//
-//                @Override
-//                public void onCancelled(FirebaseError firebaseError) {
-//
-//                }
-//            });
-//        }
+        ItemUpdateHelper.getInstance().queryItemIds("topstories", mAdapter, StoryItem.class);
     }
 }

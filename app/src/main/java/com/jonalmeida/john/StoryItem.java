@@ -50,6 +50,21 @@ public class StoryItem extends Item implements Serializable {
         this.descendants = descendants;
     }
 
+    @Override
+    public void updateThis(Item i) {
+        StoryItem item = (StoryItem) i;
+        this.id = item.id;
+        this.by = item.by;
+        this.descendants = item.descendants;
+        this.kids = item.kids;
+        this.score = item.score;
+        this.text = item.text;
+        this.time = item.time;
+        this.title = item.title;
+        this.type = item.type;
+        this.url = item.url;
+    }
+
     public String getBy() {
         return by;
     }
@@ -98,4 +113,5 @@ public class StoryItem extends Item implements Serializable {
                 " descendants: " + descendants +
                 super.toString();
     }
+
 }

@@ -8,6 +8,7 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class ItemUpdateHelper {
@@ -30,10 +31,30 @@ public class ItemUpdateHelper {
         return null;
     }
 
-    private List<Item> queryItemIds(String relativeUrlPath, int id,
-                                    final Update<Item> returnUpdateItem ) {
+    public <T>void queryItemIds(String relativeUrlPath, final Update<Item> returnUpdateItem,
+                             final Class<T> valueType) {
         Firebase firebaseRef = new Firebase(baseUrl + relativeUrlPath);
-        return null;
+        Log.d(TAG, "Creating a firebaseRef at: " + firebaseRef);
+        firebaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int pos = 0;
+                LinkedList<Item> list = new LinkedList<>();
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    // TODO: Move '*' lines to `getTopStories`
+                    if (pos >= 30) break; // *
+                    final T i = ds.getValue(valueType);
+                    queryUpdateProperties((Item)i, returnUpdateItem); // *
+                    list.push((Item) i);
+                    pos++; // *
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                // How the hell do I handle this?
+            }
+        });
     }
 
     public void queryUpdateProperties(final Item item, final Update<Item> returnUpdateItem) {
@@ -44,7 +65,9 @@ public class ItemUpdateHelper {
                 //Log.d(TAG, "dataSnapshot: " + dataSnapshot);
                 final StoryItem returnItem = dataSnapshot.getValue(StoryItem.class);
                 //Log.d(TAG, "returnItem: " + returnItem);
-                returnUpdateItem.update(returnItem);
+                if (returnUpdateItem != null) {
+                    returnUpdateItem.update(returnItem);
+                }
             }
 
             @Override
