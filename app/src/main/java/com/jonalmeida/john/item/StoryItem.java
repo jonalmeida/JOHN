@@ -1,4 +1,4 @@
-package com.jonalmeida.john;
+package com.jonalmeida.john.item;
 
 import java.io.Serializable;
 

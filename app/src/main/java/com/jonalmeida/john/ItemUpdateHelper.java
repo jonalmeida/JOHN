@@ -7,6 +7,8 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+import com.jonalmeida.john.item.Item;
+import com.jonalmeida.john.item.StoryItem;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -55,7 +57,7 @@ public class ItemUpdateHelper {
                 Log.d(TAG, "iterPos      -> " + iterPos);
                 Log.d(TAG, "iterEnd      -> " + iterEnd);
                 while (iterPos != iterEnd) {
-                    queryUpdateProperties(items.get(iterPos).id, returnUpdatedItem);
+                    queryUpdateProperties(items.get(iterPos).getId(), returnUpdatedItem);
                     iterPos--;
                 }
             }

@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.jonalmeida.john.item.Item;
+import com.jonalmeida.john.item.StoryItem;
+
 import org.ocpsoft.prettytime.PrettyTime;
 
 import java.util.Date;
@@ -96,19 +99,19 @@ public class NewsItemsRecyclerViewAdapter
 
         public void bindItem(Item storyItem) {
             mStoryItem = (StoryItem) storyItem;
-            title.setText(mStoryItem.title);
-            url.setText(mStoryItem.url);
-            score.setText(Integer.toString(mStoryItem.score));
-            author.setText(mStoryItem.by);
-            descendants.setText(Integer.toString(mStoryItem.descendants));
-            time.setText(prettyTime.format(new Date(mStoryItem.time * 1000L)));
+            title.setText(mStoryItem.getTitle());
+            url.setText(mStoryItem.getUrl());
+            score.setText(Integer.toString(mStoryItem.getScore()));
+            author.setText(mStoryItem.getBy());
+            descendants.setText(Integer.toString(mStoryItem.getDescendants()));
+            time.setText(prettyTime.format(new Date(mStoryItem.getTime() * 1000L)));
         }
 
         @Override
         public void onClick(View view) {
             if (mStoryItem != null) {
-                Log.d(TAG, "Click all you want, shit ain't gonna work! " + mStoryItem.id +
-                        " " + mStoryItem.url);
+                Log.d(TAG, "Click all you want, shit ain't gonna work! " + mStoryItem.getId() +
+                        " " + mStoryItem.getUrl());
             }
         }
     }

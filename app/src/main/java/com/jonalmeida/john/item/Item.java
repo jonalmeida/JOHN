@@ -1,4 +1,4 @@
-package com.jonalmeida.john;
+package com.jonalmeida.john.item;
 
 /**
  * Base class for all Item types that the Hacker News API will send back. To be inherited from.
@@ -24,4 +24,8 @@ public abstract class Item {
     }
 
     public abstract void updateThis(Item i);
+
+    public int getId() {
+        return id;
+    }
 }

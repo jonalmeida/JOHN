@@ -1,4 +1,4 @@
-package com.jonalmeida.john;
+package com.jonalmeida.john.item;
 
 public enum ItemType {
     Story,
