@@ -33,7 +33,6 @@ public class NewsItemsRecyclerFragment extends Fragment {
     private LinearLayoutManager mLinearLayoutManager;
 
     private LinkedList<Item> items;
-    private Firebase fb;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -45,7 +44,6 @@ public class NewsItemsRecyclerFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        fb = new Firebase("https://hacker-news.firebaseio.com/v0");
         items = new LinkedList<>();
     }
 
@@ -90,6 +88,6 @@ public class NewsItemsRecyclerFragment extends Fragment {
     }
 
     private void insertTopStories() {
-        ItemUpdateHelper.getInstance().queryItemIds("topstories", mAdapter, StoryItem.class);
+        ItemUpdateHelper.getInstance().getTopStories(mAdapter, 0, 30);
     }
 }

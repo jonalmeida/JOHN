@@ -15,7 +15,7 @@ import java.util.List;
 
 public class NewsItemsRecyclerViewAdapter
         extends RecyclerView.Adapter<NewsItemsRecyclerViewAdapter.ViewHolder>
-        implements ItemUpdateHelper.Update<Item> {
+        implements ItemUpdateHelper.UpdateListener<Item> {
     private LinkedList<Item> mItemsList;
     private LayoutInflater mInflater;
 
