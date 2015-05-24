@@ -74,6 +74,7 @@ public class ItemUpdateHelper {
             @Override
             public void onCancelled(FirebaseError firebaseError) {
                 // How the hell do I handle this?
+                Log.e(TAG, "queryItemIds failed: " + firebaseError);
             }
         });
     }
@@ -94,6 +95,7 @@ public class ItemUpdateHelper {
             @Override
             public void onCancelled(FirebaseError firebaseError) {
                 // How the hell do I handle this?
+                Log.e(TAG, "queryUpdateProperties failed for id: " + itemId + ": " + firebaseError);
             }
         });
     }
