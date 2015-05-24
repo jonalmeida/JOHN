@@ -107,7 +107,8 @@ public class NewsItemsRecyclerViewAdapter
         @Override
         public void onClick(View view) {
             if (mStoryItem != null) {
-                Log.d(TAG, "Click all you want, shit ain't gonna work!");
+                Log.d(TAG, "Click all you want, shit ain't gonna work! " + mStoryItem.id +
+                        " " + mStoryItem.url);
             }
         }
     }
