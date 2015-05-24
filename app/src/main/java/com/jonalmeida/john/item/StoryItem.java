@@ -1,6 +1,7 @@
 package com.jonalmeida.john.item;
 
-import java.io.Serializable;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 /// Json data structure view:
 // {
@@ -15,7 +16,7 @@ import java.io.Serializable;
 //         "url" : "http://www.getdropbox.com/u/2/screencast.html"
 // }
 
-public class StoryItem extends Item implements Serializable {
+public class StoryItem extends Item implements Parcelable {
     protected String by;
     protected int descendants;
     protected int[] kids;
@@ -50,12 +51,25 @@ public class StoryItem extends Item implements Serializable {
         this.descendants = descendants;
     }
 
+    private StoryItem(Parcel in) {
+        this.by = in.readString();
+        this.descendants = in.readInt();
+        this.id = in.readInt();
+        in.readIntArray(kids);
+        this.score = in.readInt();
+        this.text = in.readString();
+        this.time = in.readInt();
+        this.title = in.readString();
+        this.type = in.readString();
+        this.url = in.readString();
+    }
+
     @Override
     public void updateThis(Item i) {
         StoryItem item = (StoryItem) i;
-        this.id = item.id;
         this.by = item.by;
         this.descendants = item.descendants;
+        this.id = item.id;
         this.kids = item.kids;
         this.score = item.score;
         this.text = item.text;
@@ -64,6 +78,37 @@ public class StoryItem extends Item implements Serializable {
         this.type = item.type;
         this.url = item.url;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(this.by);
+        parcel.writeInt(this.descendants);
+        parcel.writeInt(this.id);
+        parcel.writeIntArray(this.kids);
+        parcel.writeInt(this.score);
+        parcel.writeString(this.text);
+        parcel.writeInt(this.time);
+        parcel.writeString(this.title);
+        parcel.writeString(this.type);
+        parcel.writeString(this.url);
+    }
+
+    public static final Parcelable.Creator<StoryItem> CREATOR = new Creator<StoryItem>() {
+        @Override
+        public StoryItem createFromParcel(Parcel parcel) {
+            return new StoryItem(parcel);
+        }
+
+        @Override
+        public StoryItem[] newArray(int i) {
+            return new StoryItem[0];
+        }
+    };
 
     public String getBy() {
         return by;
