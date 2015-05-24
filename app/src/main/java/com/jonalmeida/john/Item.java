@@ -1,5 +1,9 @@
 package com.jonalmeida.john;
 
+/**
+ * Base class for all Item types that the Hacker News API will send back. To be inherited from.
+ * <b>Remeber to update the {@code id} here as well!</b>
+ */
 public abstract class Item {
     protected int id;
 
