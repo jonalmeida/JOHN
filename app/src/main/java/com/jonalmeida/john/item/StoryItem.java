@@ -154,7 +154,7 @@ public class StoryItem extends Item implements Parcelable {
     }
 
     public String toString() {
-        return " title: " + title +
+        return "Title: " + title +
                 " url: " + url +
                 " score: " + score +
                 " by: "  + by +

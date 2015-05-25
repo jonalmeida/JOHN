@@ -137,4 +137,15 @@ public class AskItem extends Item implements Parcelable {
         return url;
     }
 
+    public String toString() {
+        return "By: " + by +
+                " descendants: " + descendants +
+                " id: " + id +
+                " kids: " + kids +
+                " score: " + score +
+                " text: " + text +
+                " time: " + time +
+                " type: " + type +
+                " url: " + url;
+    }
 }

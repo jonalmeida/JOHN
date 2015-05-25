@@ -117,4 +117,15 @@ public class JobItem extends Item implements Parcelable {
         return url;
     }
 
+    public String toString() {
+        return "By: " + by +
+                " id: " + id +
+                " score: " + score +
+                " text: " + text +
+                " time: " + time +
+                " title: " + title +
+                " type: " + type +
+                " url: " + url;
+    }
+
 }

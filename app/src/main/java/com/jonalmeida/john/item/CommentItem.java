@@ -116,12 +116,12 @@ public class CommentItem extends Item implements Parcelable {
     }
 
     public String toString() {
-        return " by: " + by +
+        return "By: " + by +
+                " id: " + id +
                 " kids: " + kids +
                 " parent: " + parent +
                 " text: " + text +
                 " time: " + time +
-                " type: " + type +
-                super.toString();
+                " type: " + type;
     }
 }
