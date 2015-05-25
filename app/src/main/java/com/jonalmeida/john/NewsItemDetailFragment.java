@@ -37,8 +37,11 @@ public class NewsItemDetailFragment extends Fragment {
 
         if (getArguments().containsKey(Constants.ARG_ITEM)) {
             mItem = getArguments().getParcelable(Constants.ARG_ITEM);
-            if (mItem.getType().equals("story")) {
+
+            if (mItem.getType().equals(ItemType.Story.toString())) {
                 Log.d(TAG, "Pete, we've got a story on our hands!");
+
+                getActivity().setTitle(((StoryItem) mItem).getTitle());
             }
         }
     }
