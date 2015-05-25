@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jonalmeida.john.item.Item;
@@ -96,7 +95,6 @@ public class NewsItemsRecyclerViewAdapter
         }
     }
 
-//    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         private static final String TAG = "Adapter.ViewHolder";
@@ -119,7 +117,6 @@ public class NewsItemsRecyclerViewAdapter
             author = (TextView) v.findViewById(R.id.newsitem_author);
             descendants = (TextView) v.findViewById(R.id.newsitem_descendants);
             time = (TextView) v.findViewById(R.id.newsitem_time);
-//            v.findViewById(R.id.inner_item_layout).setOnClickListener(this);
         }
 
         public void bindItem(Item storyItem) {
@@ -132,12 +129,5 @@ public class NewsItemsRecyclerViewAdapter
             time.setText(prettyTime.format(new Date(mStoryItem.getTime() * 1000L)));
         }
 
-//        @Override
-//        public void onClick(View view) {
-//            if (mStoryItem != null) {
-//                Log.d(TAG, "Click all you want, shit ain't gonna work! " + mStoryItem.getId() +
-//                        " " + mStoryItem.getUrl());
-//            }
-//        }
     }
 }
