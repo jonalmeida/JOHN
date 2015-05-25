@@ -22,7 +22,6 @@ public class CommentItem extends Item implements Parcelable {
     protected int parent;
     protected String text;
     protected int time;
-    protected String type;
 
     public CommentItem() {
         super();

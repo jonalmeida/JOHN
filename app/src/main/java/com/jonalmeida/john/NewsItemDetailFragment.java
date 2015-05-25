@@ -2,9 +2,15 @@ package com.jonalmeida.john;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.jonalmeida.john.item.Item;
+import com.jonalmeida.john.item.ItemType;
+import com.jonalmeida.john.item.StoryItem;
 
 
 /**
@@ -14,12 +20,10 @@ import android.view.ViewGroup;
  * on handsets.
  */
 public class NewsItemDetailFragment extends Fragment {
-    /**
-     * The fragment argument representing the item ID that this fragment
-     * represents.
-     */
-    public static final String ARG_ITEM_ID = "item_id";
 
+    private static final String TAG = "NewsItemDetailFragment";
+
+    private Item mItem;
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -31,10 +35,11 @@ public class NewsItemDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getArguments().containsKey(ARG_ITEM_ID)) {
-            // Load the dummy content specified by the fragment
-            // arguments. In a real-world scenario, use a Loader
-            // to load content from a content provider.
+        if (getArguments().containsKey(Constants.ARG_ITEM)) {
+            mItem = getArguments().getParcelable(Constants.ARG_ITEM);
+            if (mItem.getType().equals("story")) {
+                Log.d(TAG, "Pete, we've got a story on our hands!");
+            }
         }
     }
 
@@ -45,6 +50,10 @@ public class NewsItemDetailFragment extends Fragment {
 
         // Show the dummy content as text in a TextView.
         //if (mItem != null) { }
+
+        if (mItem != null) {
+            ((TextView) rootView.findViewById(R.id.newsitem_detail)).setText(Integer.toString(mItem.getId()));
+        }
 
         return rootView;
     }

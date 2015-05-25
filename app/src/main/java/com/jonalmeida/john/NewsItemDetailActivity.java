@@ -39,8 +39,8 @@ public class NewsItemDetailActivity extends AppCompatActivity {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(NewsItemDetailFragment.ARG_ITEM_ID,
-                    getIntent().getStringExtra(NewsItemDetailFragment.ARG_ITEM_ID));
+            arguments.putParcelable(Constants.ARG_ITEM,
+                    getIntent().getParcelableExtra(Constants.ARG_ITEM));
             NewsItemDetailFragment fragment = new NewsItemDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()

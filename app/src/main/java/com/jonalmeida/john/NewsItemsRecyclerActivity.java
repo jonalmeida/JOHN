@@ -29,7 +29,6 @@ public class NewsItemsRecyclerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Firebase.setAndroidContext(this);
         ItemUpdateHelper.getInstance().init(this);
         setContentView(R.layout.activity_newsitem_list);
 
@@ -40,39 +39,16 @@ public class NewsItemsRecyclerActivity extends AppCompatActivity {
             // activity should be in two-pane mode.
             mTwoPane = true;
 
-            savedInstanceState.putBoolean(Constants.ARG_TWO_PANE_MODE, mTwoPane);
-
-            // In two-pane mode, list items should be given the
-            // 'activated' state when touched.
-            //((NewsItemsRecyclerFragment) getSupportFragmentManager()
-            //        .findFragmentById(R.id.newsitem_list))
-            //        .setActivateOnItemClick(true);
         }
 
         overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
 
+        if (savedInstanceState != null) {
+            savedInstanceState.putBoolean(Constants.ARG_TWO_PANE_MODE, mTwoPane);
+        }
+
+        setTitle(R.string.app_full_name);
+
     }
 
-//    @Override
-//    public void onItemSelected(String id) {
-//        if (mTwoPane) {
-//            // In two-pane mode, show the detail view in this activity by
-//            // adding or replacing the detail fragment using a
-//            // fragment transaction.
-//            Bundle arguments = new Bundle();
-//            arguments.putString(NewsItemDetailFragment.ARG_ITEM_ID, id);
-//            NewsItemDetailFragment fragment = new NewsItemDetailFragment();
-//            fragment.setArguments(arguments);
-//            getSupportFragmentManager().beginTransaction()
-//                    .replace(R.id.newsitem_detail_container, fragment)
-//                    .commit();
-//
-//        } else {
-//            // In single-pane mode, simply start the detail activity
-//            // for the selected item ID.
-//            Intent detailIntent = new Intent(this, NewsItemDetailActivity.class);
-//            detailIntent.putExtra(NewsItemDetailFragment.ARG_ITEM_ID, id);
-//            startActivity(detailIntent);
-//        }
-//    }
 }

@@ -24,7 +24,6 @@ public class StoryItem extends Item implements Parcelable {
     protected String text;
     protected int time;
     protected String title;
-    protected String type;
     protected String url;
 
     public StoryItem() {
@@ -55,7 +54,7 @@ public class StoryItem extends Item implements Parcelable {
         this.by = in.readString();
         this.descendants = in.readInt();
         this.id = in.readInt();
-        in.readIntArray(kids);
+//        in.readIntArray(kids);
         this.score = in.readInt();
         this.text = in.readString();
         this.time = in.readInt();
@@ -89,7 +88,7 @@ public class StoryItem extends Item implements Parcelable {
         parcel.writeString(this.by);
         parcel.writeInt(this.descendants);
         parcel.writeInt(this.id);
-        parcel.writeIntArray(this.kids);
+//        parcel.writeIntArray(this.kids);
         parcel.writeInt(this.score);
         parcel.writeString(this.text);
         parcel.writeInt(this.time);

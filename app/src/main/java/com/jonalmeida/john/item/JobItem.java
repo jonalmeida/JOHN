@@ -22,7 +22,6 @@ public class JobItem extends Item implements Parcelable {
     protected String text;
     protected int time;
     protected String title;
-    protected String type;
     protected String url;
 
     public JobItem() {

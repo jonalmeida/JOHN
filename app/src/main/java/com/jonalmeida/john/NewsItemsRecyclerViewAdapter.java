@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jonalmeida.john.item.Item;
@@ -22,6 +23,12 @@ public class NewsItemsRecyclerViewAdapter
     private LinkedList<Item> mItemsList;
     private LayoutInflater mInflater;
 
+    protected NewsItemsRecyclerFragment mOnClickListener;
+
+    public interface OnListItemClickListener {
+        void onClick(Item i);
+    }
+
     public NewsItemsRecyclerViewAdapter(List<Item> storyItemList, LayoutInflater inflater) {
         mItemsList = (LinkedList<Item>) storyItemList;
         mInflater = inflater;
@@ -34,8 +41,14 @@ public class NewsItemsRecyclerViewAdapter
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.bindItem(mItemsList.get(position));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mOnClickListener.onClick(mItemsList.get(position));
+            }
+        });
     }
 
     @Override
@@ -72,7 +85,8 @@ public class NewsItemsRecyclerViewAdapter
         }
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+//    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         private static final String TAG = "Adapter.ViewHolder";
         private PrettyTime prettyTime = new PrettyTime();
@@ -94,7 +108,7 @@ public class NewsItemsRecyclerViewAdapter
             author = (TextView) v.findViewById(R.id.newsitem_author);
             descendants = (TextView) v.findViewById(R.id.newsitem_descendants);
             time = (TextView) v.findViewById(R.id.newsitem_time);
-            v.setOnClickListener(this);
+//            v.findViewById(R.id.inner_item_layout).setOnClickListener(this);
         }
 
         public void bindItem(Item storyItem) {
@@ -107,12 +121,12 @@ public class NewsItemsRecyclerViewAdapter
             time.setText(prettyTime.format(new Date(mStoryItem.getTime() * 1000L)));
         }
 
-        @Override
-        public void onClick(View view) {
-            if (mStoryItem != null) {
-                Log.d(TAG, "Click all you want, shit ain't gonna work! " + mStoryItem.getId() +
-                        " " + mStoryItem.getUrl());
-            }
-        }
+//        @Override
+//        public void onClick(View view) {
+//            if (mStoryItem != null) {
+//                Log.d(TAG, "Click all you want, shit ain't gonna work! " + mStoryItem.getId() +
+//                        " " + mStoryItem.getUrl());
+//            }
+//        }
     }
 }
