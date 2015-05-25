@@ -2,90 +2,83 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/list_row_selector"
-    android:padding="8dp" >
+    android:background="@drawable/list_row_selector">
 
-    <!--<android.support.v7.widget.CardView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent">-->
+    <RelativeLayout
+        android:id="@+id/inner_item_layout"
+        android:paddingTop="@dimen/padding_top_card_view"
+        android:paddingStart="@dimen/padding_start_card_view"
+        android:paddingEnd="@dimen/padding_end_card_view"
+        android:paddingBottom="@dimen/padding_botton_card_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@+id/descendant_layout">
 
-        <RelativeLayout
-            android:id="@+id/inner_item_layout"
-            android:paddingTop="@dimen/padding_top_card_view"
-            android:paddingStart="@dimen/padding_start_card_view"
-            android:paddingEnd="@dimen/padding_end_card_view"
-            android:paddingBottom="@dimen/padding_botton_card_view"
+        <TextView
+            android:id="@+id/newsitem_title"
+            android:text="This is a title, LOLOLOL"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:paddingEnd="@dimen/padding_end_item_value"
+            android:textStyle="bold"
+            android:singleLine="true"
+            android:ellipsize="end" />
+
+        <TextView
+            android:id="@+id/newsitem_score"
+            android:text="10"
+            android:textColor="@color/secondary_text"
+            android:background="@drawable/rounded_corner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toStartOf="@+id/descendant_layout">
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/newsitem_title"
+            android:paddingStart="@dimen/padding_start_score"
+            android:paddingEnd="@dimen/padding_end_score"
+            android:paddingTop="@dimen/padding_top_item_value"
+            android:paddingBottom="@dimen/padding_bottom_item_value" />
 
-            <TextView
-                android:id="@+id/newsitem_title"
-                android:text="This is a title, LOLOLOL"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:paddingEnd="@dimen/padding_end_item_value"
-                android:textStyle="bold"
-                android:singleLine="true"
-                android:ellipsize="end" />
+        <TextView
+            android:id="@+id/newsitem_author"
+            android:text="jonalmeida"
+            android:paddingStart="@dimen/padding_start_item_value"
+            android:paddingEnd="@dimen/padding_end_item_value"
+            android:paddingTop="@dimen/padding_top_item_value"
+            android:paddingBottom="@dimen/padding_bottom_item_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/newsitem_title"
+            android:layout_toEndOf="@+id/newsitem_score" />
 
-            <TextView
-                android:id="@+id/newsitem_score"
-                android:text="10"
-                android:textColor="@color/secondary_text"
-                android:background="@drawable/rounded_corner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/newsitem_title"
-                android:paddingStart="@dimen/padding_start_score"
-                android:paddingEnd="@dimen/padding_end_score"
-                android:paddingTop="@dimen/padding_top_item_value"
-                android:paddingBottom="@dimen/padding_bottom_item_value" />
+        <TextView
+            android:id="@+id/newsitem_time"
+            android:text="5 hours ago"
+            android:paddingStart="@dimen/padding_start_item_value"
+            android:paddingEnd="@dimen/padding_end_item_value"
+            android:paddingTop="@dimen/padding_top_item_value"
+            android:paddingBottom="@dimen/padding_bottom_item_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/newsitem_title"
+            android:layout_toEndOf="@+id/newsitem_author" />
 
-            <TextView
-                android:id="@+id/newsitem_author"
-                android:text="jonalmeida"
-                android:paddingStart="@dimen/padding_start_item_value"
-                android:paddingEnd="@dimen/padding_end_item_value"
-                android:paddingTop="@dimen/padding_top_item_value"
-                android:paddingBottom="@dimen/padding_bottom_item_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/newsitem_title"
-                android:layout_toEndOf="@+id/newsitem_score" />
+        <TextView
+            android:id="@+id/newsitem_url"
+            android:text="http://jonalmeida.com"
+            android:textColor="@color/secondary_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/newsitem_score"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/newsitem_time"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:layout_alignEnd="@+id/newsitem_title" />
 
-            <TextView
-                android:id="@+id/newsitem_time"
-                android:text="5 hours ago"
-                android:paddingStart="@dimen/padding_start_item_value"
-                android:paddingEnd="@dimen/padding_end_item_value"
-                android:paddingTop="@dimen/padding_top_item_value"
-                android:paddingBottom="@dimen/padding_bottom_item_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/newsitem_title"
-                android:layout_toEndOf="@+id/newsitem_author" />
+    </RelativeLayout>
 
-            <TextView
-                android:id="@+id/newsitem_url"
-                android:text="http://jonalmeida.com"
-                android:textColor="@color/secondary_text"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/newsitem_score"
-                android:layout_alignParentStart="true"
-                android:layout_toStartOf="@+id/newsitem_time"
-                android:paddingEnd="@dimen/padding_end_item_value"
-                android:singleLine="true"
-                android:ellipsize="end"
-                android:layout_alignEnd="@+id/newsitem_title" />
-
-        </RelativeLayout>
-
-    <!--</android.support.v7.widget.CardView>-->
     <RelativeLayout
         android:id="@+id/descendant_layout"
         android:layout_width="50sp"
@@ -97,17 +90,13 @@
             android:id="@+id/newsitem_descendants"
             android:text="50"
             android:textColor="@color/secondary_text"
-            android:background="@color/score_background"
-            android:paddingStart="@dimen/padding_start_score"
-            android:paddingEnd="@dimen/padding_end_score"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_alignParentEnd="true"
+            android:background="@color/descendants_background"
+            android:layout_width="50sp"
+            android:layout_height="match_parent"
             android:layout_alignParentStart="false"
-            android:layout_alignWithParentIfMissing="false"
             android:gravity="center"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true" />
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true" />
 
     </RelativeLayout>
 
