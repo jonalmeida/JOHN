@@ -8,11 +8,16 @@
 
         <RelativeLayout
             android:id="@+id/foo"
+            android:paddingTop="@dimen/padding_top_card_view"
+            android:paddingStart="@dimen/padding_start_card_view"
+            android:paddingEnd="@dimen/padding_end_card_view"
+            android:paddingBottom="@dimen/padding_botton_card_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/newsitem_title"
+                android:text="This is a title, LOLOLOL"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -24,6 +29,7 @@
 
             <TextView
                 android:id="@+id/newsitem_score"
+                android:text="10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -31,6 +37,9 @@
 
             <TextView
                 android:id="@+id/newsitem_author"
+                android:text="jonalmeida"
+                android:paddingStart="@dimen/padding_start_item_value"
+                android:paddingEnd="@dimen/padding_end_item_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/newsitem_title"
@@ -38,6 +47,9 @@
 
             <TextView
                 android:id="@+id/newsitem_time"
+                android:text="5 hours ago"
+                android:paddingStart="@dimen/padding_start_item_value"
+                android:paddingEnd="@dimen/padding_end_item_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/newsitem_title"
@@ -45,6 +57,7 @@
 
             <TextView
                 android:id="@+id/newsitem_descendants"
+                android:text="50"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -57,6 +70,7 @@
 
             <TextView
                 android:id="@+id/newsitem_url"
+                android:text="http://jonalmeida.com"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/newsitem_score"

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding_top_card_view">10sp</dimen>
+    <dimen name="padding_start_card_view">10sp</dimen>
+    <dimen name="padding_end_card_view">10sp</dimen>
+    <dimen name="padding_botton_card_view">10sp</dimen>
+
+    <dimen name="padding_start_item_value">10sp</dimen>
+    <dimen name="padding_end_item_value">10sp</dimen>
+</resources>
