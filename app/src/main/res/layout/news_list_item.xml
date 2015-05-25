@@ -81,22 +81,31 @@
 
     <RelativeLayout
         android:id="@+id/descendant_layout"
+        android:background="@color/descendants_background"
+        android:gravity="center"
         android:layout_width="50sp"
         android:layout_height="fill_parent"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
         android:layout_alignBottom="@+id/inner_item_layout">
+
+        <ImageView
+            android:src="@drawable/comment_icon"
+            android:layout_width="15sp"
+            android:layout_height="15sp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:id="@+id/imageView" />
 
         <TextView
             android:id="@+id/newsitem_descendants"
             android:text="50"
             android:textColor="@color/secondary_text"
             android:background="@color/descendants_background"
-            android:layout_width="50sp"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="false"
-            android:gravity="center"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 

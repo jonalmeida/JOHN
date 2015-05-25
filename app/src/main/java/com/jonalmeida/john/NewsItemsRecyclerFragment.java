@@ -77,6 +77,7 @@ public class NewsItemsRecyclerFragment extends Fragment {
 
     private void init(View v, LayoutInflater inflater) {
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
         mLinearLayoutManager = new LinearLayoutManager(getActivity());
         mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
