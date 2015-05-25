@@ -55,7 +55,7 @@ public class NewsItemDetailFragment extends Fragment {
         //if (mItem != null) { }
 
         if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.newsitem_detail)).setText(Integer.toString(mItem.getId()));
+            ((TextView) rootView.findViewById(R.id.newsitem_detail)).setText(mItem.toString());
         }
 
         return rootView;

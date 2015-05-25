@@ -159,7 +159,8 @@ public class StoryItem extends Item implements Parcelable {
                 " score: " + score +
                 " by: "  + by +
                 " descendants: " + descendants +
-                super.toString();
+                " id: "  + id +
+                " type: " + type;
     }
 
 }
