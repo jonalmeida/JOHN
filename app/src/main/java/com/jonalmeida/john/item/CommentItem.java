@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.Arrays;
+import java.util.List;
 
 /// Json data structure view:
 // {
@@ -18,7 +19,7 @@ import java.util.Arrays;
 
 public class CommentItem extends Item implements Parcelable {
     protected String by;
-    protected int[] kids;
+    protected List<Integer> kids;
     protected int parent;
     protected String text;
     protected int time;
@@ -38,7 +39,7 @@ public class CommentItem extends Item implements Parcelable {
     private CommentItem(Parcel in) {
         this.by = in.readString();
         this.id = in.readInt();
-        in.readIntArray(kids);
+        in.readList(kids, ClassLoader.getSystemClassLoader());
         this.parent = in.readInt();
         this.text = in.readString();
         this.time = in.readInt();
@@ -66,7 +67,7 @@ public class CommentItem extends Item implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(this.by);
         parcel.writeInt(this.id);
-        parcel.writeIntArray(this.kids);
+        parcel.writeList(this.kids);
         parcel.writeInt(this.parent);
         parcel.writeString(this.text);
         parcel.writeInt(this.time);
@@ -94,7 +95,7 @@ public class CommentItem extends Item implements Parcelable {
         return super.id;
     }
 
-    public int[] getKids() {
+    public List<Integer> getKids() {
         return kids;
     }
 
@@ -116,7 +117,7 @@ public class CommentItem extends Item implements Parcelable {
 
     public String toString() {
         return " by: " + by +
-                " kids: " + Arrays.toString(kids) +
+                " kids: " + kids +
                 " parent: " + parent +
                 " text: " + text +
                 " time: " + time +

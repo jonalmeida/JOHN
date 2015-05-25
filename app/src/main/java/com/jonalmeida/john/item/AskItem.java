@@ -3,6 +3,8 @@ package com.jonalmeida.john.item;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.List;
+
 /// Json data structure view:
 // {
 //         "by" : "tel",
@@ -21,7 +23,7 @@ public class AskItem extends Item implements Parcelable {
 
     protected String by;
     protected int descendants;
-    protected int[] kids;
+    protected List<Integer> kids;
     protected int score;
     protected String text;
     protected int time;
@@ -44,7 +46,7 @@ public class AskItem extends Item implements Parcelable {
         this.by = in.readString();
         this.descendants = in.readInt();
         this.id = in.readInt();
-        in.readIntArray(kids);
+        in.readList(kids, ClassLoader.getSystemClassLoader());
         this.score = in.readInt();
         this.text = in.readString();
         this.time = in.readInt();
@@ -78,7 +80,7 @@ public class AskItem extends Item implements Parcelable {
         parcel.writeString(this.by);
         parcel.writeInt(this.descendants);
         parcel.writeInt(this.id);
-        parcel.writeIntArray(this.kids);
+        parcel.writeList(this.kids);
         parcel.writeInt(this.score);
         parcel.writeString(this.text);
         parcel.writeInt(this.time);
@@ -107,7 +109,7 @@ public class AskItem extends Item implements Parcelable {
         return descendants;
     }
 
-    public int[] getKids() {
+    public List<Integer> getKids() {
         return kids;
     }
 
