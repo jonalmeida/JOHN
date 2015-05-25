@@ -7,4 +7,9 @@
 
     <dimen name="padding_start_item_value">10sp</dimen>
     <dimen name="padding_end_item_value">10sp</dimen>
+    <dimen name="padding_top_item_value">3sp</dimen>
+    <dimen name="padding_bottom_item_value">3sp</dimen>
+
+    <dimen name="padding_start_score">3sp</dimen>
+    <dimen name="padding_end_score">3sp</dimen>
 </resources>

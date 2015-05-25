@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="main_app_color">#ff6600</color>
+    <color name="main_hn_color">#ff6600</color>
 
     <color name="primary">#FF9800</color>
     <color name="primary_dark">#F57C00</color>
@@ -10,4 +10,13 @@
     <color name="secondary_text">#727272</color>
     <color name="icons">#212121</color>
     <color name="divider">#B6B6B6</color>
+
+    <!--<color name="score_background">#EEEEEE</color>-->
+    <color name="score_background">#E0E0E0</color>
+
+    <color name="list_divider">#d9d9d9</color>
+    <color name="list_row_start_color">#ffffff</color>
+    <color name="list_row_end_color">#ffffff</color>
+    <color name="list_row_hover_start_color">#ebeef0</color>
+    <color name="list_row_hover_end_color">#ebeef0</color>
 </resources>

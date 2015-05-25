@@ -1,11 +1,8 @@
 package com.jonalmeida.john;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
-
-import com.firebase.client.Firebase;
+import android.support.v7.app.AppCompatActivity;
 
 
 /**
@@ -21,13 +18,13 @@ import com.firebase.client.Firebase;
  * (if present) is a {@link NewsItemDetailFragment}.
  * <p/>
  */
-public class NewsItemsRecyclerActivity extends FragmentActivity {
+public class NewsItemsRecyclerActivity extends AppCompatActivity {
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.
      */
-    private boolean mTwoPane;
+    private boolean mTwoPane = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +40,8 @@ public class NewsItemsRecyclerActivity extends FragmentActivity {
             // activity should be in two-pane mode.
             mTwoPane = true;
 
+            savedInstanceState.putBoolean(Constants.ARG_TWO_PANE_MODE, mTwoPane);
+
             // In two-pane mode, list items should be given the
             // 'activated' state when touched.
             //((NewsItemsRecyclerFragment) getSupportFragmentManager()
@@ -50,6 +49,7 @@ public class NewsItemsRecyclerActivity extends FragmentActivity {
             //        .setActivateOnItemClick(true);
         }
 
+        overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
 
     }
 
