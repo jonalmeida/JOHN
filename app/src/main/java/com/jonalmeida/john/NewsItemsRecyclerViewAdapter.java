@@ -20,6 +20,9 @@ import java.util.List;
 public class NewsItemsRecyclerViewAdapter
         extends RecyclerView.Adapter<NewsItemsRecyclerViewAdapter.ViewHolder>
         implements ItemUpdateHelper.UpdateListener<Item> {
+
+    private static final String TAG = "RecyclerViewAdapter";
+
     private LinkedList<Item> mItemsList;
     private LayoutInflater mInflater;
 
@@ -43,10 +46,18 @@ public class NewsItemsRecyclerViewAdapter
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.bindItem(mItemsList.get(position));
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.findViewById(R.id.inner_item_layout)
+                .setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mOnClickListener.onClick(mItemsList.get(position));
+            }
+        });
+        holder.itemView.findViewById(R.id.descendant_layout)
+                .setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG, "We looking for comments for: " + mItemsList.get(position).getId());
             }
         });
     }
