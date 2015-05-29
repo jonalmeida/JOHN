@@ -51,6 +51,7 @@ public class NewsItemsRecyclerFragment extends Fragment
             Intent detailIntent = new Intent(getActivity(), NewsItemDetailActivity.class);
             detailIntent.putExtra(Constants.ARG_ITEM, i);
             startActivity(detailIntent);
+            getActivity().overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
         }
     }
 
