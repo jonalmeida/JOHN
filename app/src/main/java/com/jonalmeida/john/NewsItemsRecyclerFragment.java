@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 
 import com.jonalmeida.john.item.Item;
 
-import java.net.ContentHandler;
 import java.util.LinkedList;
 
 /**
@@ -34,6 +33,11 @@ public class NewsItemsRecyclerFragment extends Fragment
     private LinearLayoutManager mLinearLayoutManager;
 
     private LinkedList<Item> items;
+
+    /**
+     * Whether or not the activity is in two-pane mode, i.e. running on a tablet
+     * device.
+     */
     private boolean mTwoPane;
 
     @Override
@@ -67,18 +71,15 @@ public class NewsItemsRecyclerFragment extends Fragment
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         items = new LinkedList<>();
-        if (getActivity().findViewById(R.id.newsitem_detail_container) != null) {
-            mTwoPane = true;
-        }
-        if (savedInstanceState != null) {
-            savedInstanceState.putBoolean(Constants.ARG_TWO_PANE_MODE, mTwoPane);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_news_list_layout, container, false);
+
+        mTwoPane = getResources().getBoolean(R.bool.twoPane);
+
         mAdapter = new NewsItemsRecyclerViewAdapter(items, inflater);
         mAdapter.mOnClickListener = this;
         init(v);

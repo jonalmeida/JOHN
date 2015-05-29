@@ -20,11 +20,7 @@ import android.support.v7.app.AppCompatActivity;
  */
 public class NewsItemsRecyclerActivity extends AppCompatActivity {
 
-    /**
-     * Whether or not the activity is in two-pane mode, i.e. running on a tablet
-     * device.
-     */
-    private boolean mTwoPane = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,20 +28,8 @@ public class NewsItemsRecyclerActivity extends AppCompatActivity {
         ItemUpdateHelper.getInstance().init(this);
         setContentView(R.layout.activity_newsitem_list);
 
-        if (findViewById(R.id.newsitem_detail_container) != null) {
-            // The detail container view will be present only in the
-            // large-screen layouts (res/values-large and
-            // res/values-sw600dp). If this view is present, then the
-            // activity should be in two-pane mode.
-            mTwoPane = true;
-
-        }
-
         overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
 
-        if (savedInstanceState != null) {
-            savedInstanceState.putBoolean(Constants.ARG_TWO_PANE_MODE, mTwoPane);
-        }
 
         setTitle(R.string.app_full_name);
 
