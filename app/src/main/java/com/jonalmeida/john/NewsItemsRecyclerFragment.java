@@ -123,7 +123,9 @@ public class NewsItemsRecyclerFragment extends Fragment
     }
 
     private void insertTopStories() {
-        ItemUpdateHelper.getInstance().getTopStories(mAdapter, 0, 30);
+        if (mAdapter.getItemCount() <= 0)
+            Log.d(TAG, "No items in top stories adapter, getting updated ones.");
+            ItemUpdateHelper.getInstance().getTopStories(mAdapter, 0, 30);
     }
 
 }
