@@ -4,4 +4,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_newsitem_detail">Story</string>
     <string name="action_open_menu">Open in browser</string>
+
+    <string name="app_full_name_app">Just Another Hacker News App</string>
 </resources>

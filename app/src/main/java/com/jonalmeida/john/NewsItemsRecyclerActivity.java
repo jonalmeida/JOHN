@@ -29,7 +29,7 @@ public class NewsItemsRecyclerActivity extends AppCompatActivity {
 
         overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
 
-        setTitle(R.string.app_full_name);
+        setTitle(R.string.app_full_name_app);
 
     }
 
