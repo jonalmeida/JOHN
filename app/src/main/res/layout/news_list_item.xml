@@ -90,7 +90,7 @@
         android:layout_alignBottom="@+id/inner_item_layout">
 
         <ImageView
-            android:src="@drawable/comment_icon"
+            android:src="@drawable/comment_icon_copy"
             android:layout_width="15sp"
             android:layout_height="15sp"
             android:layout_centerHorizontal="true"
