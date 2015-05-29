@@ -13,8 +13,8 @@
         <!-- status bar theme color for v21+ only -->
         <item name="android:statusBarColor">@color/primary_dark</item>
 
+        <!-- background for text selection mode -->
+        <item name="android:actionModeBackground">@color/primary</item>
     </style>
-
-
 
 </resources>
