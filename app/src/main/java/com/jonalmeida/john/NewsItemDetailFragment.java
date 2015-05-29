@@ -23,6 +23,7 @@ public class NewsItemDetailFragment extends Fragment {
 
     private static final String TAG = "NewsItemDetailFragment";
 
+    private boolean mTwoPane = false;
     private Item mItem;
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -35,13 +36,18 @@ public class NewsItemDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if (getArguments().containsKey(Constants.ARG_TWO_PANE_MODE)) {
+            mTwoPane = getArguments().getBoolean(Constants.ARG_TWO_PANE_MODE);
+        }
+
         if (getArguments().containsKey(Constants.ARG_ITEM)) {
             mItem = getArguments().getParcelable(Constants.ARG_ITEM);
 
             if (mItem.getType().equals(ItemType.Story.toString())) {
                 Log.d(TAG, "Pete, we've got a story on our hands!");
 
-                getActivity().setTitle(((StoryItem) mItem).getTitle());
+                if (!mTwoPane)
+                    getActivity().setTitle(((StoryItem) mItem).getTitle());
             }
         }
     }

@@ -107,6 +107,7 @@ public class NewsItemsRecyclerFragment extends Fragment
         if (mTwoPane) {
             Bundle bundle = new Bundle();
             bundle.putParcelable(Constants.ARG_ITEM, i);
+            bundle.putBoolean(Constants.ARG_TWO_PANE_MODE, mTwoPane);
             NewsItemDetailFragment fragment = new NewsItemDetailFragment();
             fragment.setArguments(bundle);
             this.getFragmentManager().beginTransaction()
@@ -115,6 +116,7 @@ public class NewsItemsRecyclerFragment extends Fragment
         } else {
             Intent detailIntent = new Intent(getActivity(), NewsItemDetailActivity.class);
             detailIntent.putExtra(Constants.ARG_ITEM, i);
+            detailIntent.putExtra(Constants.ARG_TWO_PANE_MODE, mTwoPane);
             startActivity(detailIntent);
             getActivity().overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
         }

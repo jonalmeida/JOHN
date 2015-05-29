@@ -41,6 +41,8 @@ public class NewsItemDetailActivity extends AppCompatActivity {
             Bundle arguments = new Bundle();
             arguments.putParcelable(Constants.ARG_ITEM,
                     getIntent().getParcelableExtra(Constants.ARG_ITEM));
+            arguments.putBoolean(Constants.ARG_TWO_PANE_MODE,
+                    getIntent().getBooleanExtra(Constants.ARG_TWO_PANE_MODE, false));
             NewsItemDetailFragment fragment = new NewsItemDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
