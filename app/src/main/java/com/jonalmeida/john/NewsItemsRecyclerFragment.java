@@ -40,26 +40,6 @@ public class NewsItemsRecyclerFragment extends Fragment
      */
     private boolean mTwoPane;
 
-    @Override
-    public void onClick(Item i) {
-        Log.d(TAG, "We're getting the item here: " + i.getId());
-        if (mTwoPane) {
-            Bundle bundle = new Bundle();
-            bundle.putParcelable(Constants.ARG_ITEM, i);
-            NewsItemDetailFragment fragment = new NewsItemDetailFragment();
-            fragment.setArguments(bundle);
-            this.getFragmentManager().beginTransaction()
-                    .replace(R.id.newsitem_detail_container, fragment)
-                    .commit();
-        } else {
-            Intent detailIntent = new Intent(getActivity(), NewsItemDetailActivity.class);
-            detailIntent.putExtra(Constants.ARG_ITEM, i);
-            startActivity(detailIntent);
-            getActivity().overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
-        }
-    }
-
-
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -95,7 +75,6 @@ public class NewsItemsRecyclerFragment extends Fragment
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-
     }
 
     @Override
@@ -122,7 +101,27 @@ public class NewsItemsRecyclerFragment extends Fragment
         insertTopStories();
     }
 
+    @Override
+    public void onClick(Item i) {
+        Log.d(TAG, "We're getting the item here: " + i.getId());
+        if (mTwoPane) {
+            Bundle bundle = new Bundle();
+            bundle.putParcelable(Constants.ARG_ITEM, i);
+            NewsItemDetailFragment fragment = new NewsItemDetailFragment();
+            fragment.setArguments(bundle);
+            this.getFragmentManager().beginTransaction()
+                    .replace(R.id.newsitem_detail_container, fragment)
+                    .commit();
+        } else {
+            Intent detailIntent = new Intent(getActivity(), NewsItemDetailActivity.class);
+            detailIntent.putExtra(Constants.ARG_ITEM, i);
+            startActivity(detailIntent);
+            getActivity().overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+        }
+    }
+
     private void insertTopStories() {
         ItemUpdateHelper.getInstance().getTopStories(mAdapter, 0, 30);
     }
+
 }

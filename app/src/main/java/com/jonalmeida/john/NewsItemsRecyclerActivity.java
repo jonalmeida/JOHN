@@ -3,6 +3,7 @@ package com.jonalmeida.john;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 
 
 /**
@@ -20,8 +21,6 @@ import android.support.v7.app.AppCompatActivity;
  */
 public class NewsItemsRecyclerActivity extends AppCompatActivity {
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,9 +29,15 @@ public class NewsItemsRecyclerActivity extends AppCompatActivity {
 
         overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
 
-
         setTitle(R.string.app_full_name);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 
 }
