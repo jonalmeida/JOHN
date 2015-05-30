@@ -6,4 +6,6 @@
     <string name="action_open_menu">Open in browser</string>
 
     <string name="app_full_name_app">Just Another Hacker News App</string>
+    <string name="title_activity_comment_items">Coments</string>
+    <string name="hello_world">Hello world!</string>
 </resources>

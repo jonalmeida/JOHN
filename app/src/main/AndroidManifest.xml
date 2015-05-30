@@ -26,6 +26,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".NewsItemsRecyclerActivity" />
         </activity>
+        <activity
+            android:name=".CommentItemsActivity"
+            android:label="@string/title_activity_comment_items" >
+        </activity>
     </application>
 
 </manifest>

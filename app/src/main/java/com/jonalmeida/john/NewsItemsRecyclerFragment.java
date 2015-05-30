@@ -102,7 +102,7 @@ public class NewsItemsRecyclerFragment extends Fragment
     }
 
     @Override
-    public void onClick(Item i) {
+    public void onStoryClicked(Item i) {
         Log.d(TAG, "We're getting the item here: " + i.getId());
         if (mTwoPane) {
             Bundle bundle = new Bundle();
@@ -118,6 +118,27 @@ public class NewsItemsRecyclerFragment extends Fragment
             detailIntent.putExtra(Constants.ARG_ITEM, i);
             detailIntent.putExtra(Constants.ARG_TWO_PANE_MODE, mTwoPane);
             startActivity(detailIntent);
+            getActivity().overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+        }
+    }
+
+    @Override
+    public void onCommentClicked(Item i) {
+        Log.d(TAG, "We're getting an item's comments here: " + i.getId());
+        if (mTwoPane) {
+            Bundle bundle = new Bundle();
+            bundle.putParcelable(Constants.ARG_ITEM, i);
+            bundle.putBoolean(Constants.ARG_TWO_PANE_MODE, mTwoPane);
+            CommentItemsFragment fragment = new CommentItemsFragment();
+            fragment.setArguments(bundle);
+            this.getFragmentManager().beginTransaction()
+                    .replace(R.id.newsitem_detail_container, fragment)
+                    .commit();
+        } else {
+            Intent commentIntent = new Intent(getActivity(), CommentItemsActivity.class);
+            commentIntent.putExtra(Constants.ARG_ITEM, i);
+            commentIntent.putExtra(Constants.ARG_TWO_PANE_MODE, mTwoPane);
+            startActivity(commentIntent);
             getActivity().overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
         }
     }

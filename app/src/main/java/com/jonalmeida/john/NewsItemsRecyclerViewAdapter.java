@@ -28,7 +28,17 @@ public class NewsItemsRecyclerViewAdapter
     protected NewsItemsRecyclerFragment mOnClickListener;
 
     public interface OnListItemClickListener {
-        void onClick(Item i);
+        /**
+         * Called when a story item is clicked.
+         * @param i The item index in the adapter.
+         */
+        void onStoryClicked(Item i);
+
+        /**
+         * Called when a story's comment is clicked.
+         * @param i The item index in the adapter.
+         */
+        void onCommentClicked(Item i);
     }
 
     public NewsItemsRecyclerViewAdapter(List<Item> storyItemList, LayoutInflater inflater) {
@@ -49,7 +59,7 @@ public class NewsItemsRecyclerViewAdapter
                 .setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mOnClickListener.onClick(mItemsList.get(position));
+                mOnClickListener.onStoryClicked(mItemsList.get(position));
             }
         });
         holder.itemView.findViewById(R.id.descendant_layout)
@@ -57,6 +67,7 @@ public class NewsItemsRecyclerViewAdapter
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "We looking for comments for: " + mItemsList.get(position).getId());
+                mOnClickListener.onCommentClicked(mItemsList.get(position));
             }
         });
     }
