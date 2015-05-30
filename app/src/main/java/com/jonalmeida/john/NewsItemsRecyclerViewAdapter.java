@@ -48,7 +48,7 @@ public class NewsItemsRecyclerViewAdapter
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = mInflater.inflate(R.layout.news_list_item, parent, false);
+        View v = mInflater.inflate(R.layout.item_news_list, parent, false);
         return new ViewHolder(v);
     }
 
