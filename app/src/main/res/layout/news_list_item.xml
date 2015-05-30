@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/list_row_selector">
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:id="@+id/inner_item_layout"
@@ -10,6 +9,7 @@
         android:paddingStart="@dimen/padding_start_card_view"
         android:paddingEnd="@dimen/padding_end_card_view"
         android:paddingBottom="@dimen/padding_botton_card_view"
+        android:background="@drawable/list_row_selector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toStartOf="@+id/descendant_layout">
@@ -81,7 +81,7 @@
 
     <RelativeLayout
         android:id="@+id/descendant_layout"
-        android:background="@color/descendants_background"
+        android:background="@drawable/comment_row_selector"
         android:gravity="center"
         android:layout_width="50sp"
         android:layout_height="fill_parent"

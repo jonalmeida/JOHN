@@ -19,4 +19,7 @@
     <color name="list_row_end_color">#ffffff</color>
     <color name="list_row_hover_start_color">#ebeef0</color>
     <color name="list_row_hover_end_color">#ebeef0</color>
+
+    <color name="descendants_start_bg">#FAF2F0</color>
+    <color name="descendants_end_bg">#FAF2F0</color>
 </resources>
