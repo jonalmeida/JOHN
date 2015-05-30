@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 import com.jonalmeida.john.item.Item;
@@ -62,6 +63,10 @@ public class NewsItemDetailFragment extends Fragment {
 
         if (mItem != null) {
             ((TextView) rootView.findViewById(R.id.newsitem_detail)).setText(mItem.toString());
+
+            WebView webView = (WebView) rootView.findViewById(R.id.mywebview);
+            webView.getSettings().setJavaScriptEnabled(true);
+            webView.loadUrl(((StoryItem) mItem).getUrl());
         }
 
         return rootView;
