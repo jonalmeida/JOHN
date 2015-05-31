@@ -76,7 +76,6 @@ public class NewsItemsRecyclerFragment extends Fragment
         super.onViewCreated(view, savedInstanceState);
         mRecyclerView.setAdapter(mAdapter);
         setSwipeRefresher();
-
     }
 
     private void refreshContent() {
@@ -87,7 +86,7 @@ public class NewsItemsRecyclerFragment extends Fragment
             public void run() {
                 items.clear();
                 mAdapter = new NewsItemsRecyclerViewAdapter(items, mLayoutInflater);
-                mAdapter.mOnClickListener = newsItemsRecyclerFragment;
+                mAdapter.setOnClickListener(newsItemsRecyclerFragment);
                 mRecyclerView.setAdapter(mAdapter);
                 insertTopStories();
                 mSwipeRefreshLayout.setRefreshing(false);
@@ -113,7 +112,7 @@ public class NewsItemsRecyclerFragment extends Fragment
 
     private void init(View v) {
         mTwoPane = getResources().getBoolean(R.bool.twoPane);
-        mAdapter.mOnClickListener = this;
+        mAdapter.setOnClickListener(this);
 
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),

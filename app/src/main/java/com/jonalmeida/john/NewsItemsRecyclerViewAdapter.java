@@ -25,7 +25,7 @@ public class NewsItemsRecyclerViewAdapter
     private LinkedList<Item> mItemsList;
     private LayoutInflater mInflater;
 
-    protected NewsItemsRecyclerFragment mOnClickListener;
+    private NewsItemsRecyclerFragment mOnClickListener;
 
     public interface OnListItemClickListener {
         /**
@@ -104,6 +104,10 @@ public class NewsItemsRecyclerViewAdapter
         for (Item i : storyItems) {
             addItemAtEnd(i);
         }
+    }
+
+    public void setOnClickListener(NewsItemsRecyclerFragment mOnClickListener) {
+        this.mOnClickListener = mOnClickListener;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
