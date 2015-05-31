@@ -58,15 +58,14 @@ public class NewsItemDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_newsitem_detail, container, false);
 
-        // Show the dummy content as text in a TextView.
-        //if (mItem != null) { }
-
         if (mItem != null) {
             ((TextView) rootView.findViewById(R.id.newsitem_detail)).setText(mItem.toString());
 
             WebView webView = (WebView) rootView.findViewById(R.id.mywebview);
             webView.getSettings().setJavaScriptEnabled(true);
             webView.loadUrl(((StoryItem) mItem).getUrl());
+//            String data = "<div>\n  \n\n\n\n\n\n\n\n<div class=\"entry\">\n\t<p>When we launched Readability a few weeks ago, we left a whole host of ideas and features on the drawing board. The ideas kept on coming, but we also wanted to go live sooner than later. Now that Readability has launched, we&#x2019;re excited to pick up those ideas and run with them.</p>\n<p>But great ideas don&#x2019;t only come from us. Since we launched, we&#x2019;ve been flooded with great ideas from users via email, Twitter, and other channels. Every time a good idea landed in our laps, we&#x2019;d be excited and then anxious about losing it amidst all the noise&#x2026;until now.</p>\n<p>Introducing <a href=\"http://readability.bonfireapp.com\">Readability Ideas</a>. It&#x2019;s a place where the Readability community &#x2013; both readers and publishers &#x2013; and the Readability team share, talk about and bring ideas to reality. You can log in with your Facebook or Readability account right into Readability Ideas.</p>\n<p>We couldn&#x2019;t be more excited about where we take Readability from here. We look forward to hearing your feedback on how we can make Readability the best reading platform on the web.</p>\n    \n\t\n\n\n \n\n </div>\n</div>";
+//            webView.loadData(data, "text/html; charset=UTF-8", null);
         }
 
         return rootView;
