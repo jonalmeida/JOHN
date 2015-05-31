@@ -3,8 +3,10 @@ package com.jonalmeida.john;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -31,7 +33,8 @@ public class NewsItemsRecyclerFragment extends Fragment
     private RecyclerView mRecyclerView;
     private NewsItemsRecyclerViewAdapter mAdapter;
     private LinearLayoutManager mLinearLayoutManager;
-
+    private LayoutInflater mLayoutInflater;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
     private LinkedList<Item> items;
 
     /**
@@ -58,11 +61,13 @@ public class NewsItemsRecyclerFragment extends Fragment
                              @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_news_list_layout, container, false);
 
-        mTwoPane = getResources().getBoolean(R.bool.twoPane);
-
+        mLayoutInflater = inflater;
+        mSwipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.activity_main_swipe_refresh_layout);
         mAdapter = new NewsItemsRecyclerViewAdapter(items, inflater);
-        mAdapter.mOnClickListener = this;
+
+        insertTopStories();
         init(v);
+
         return v;
     }
 
@@ -70,6 +75,24 @@ public class NewsItemsRecyclerFragment extends Fragment
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mRecyclerView.setAdapter(mAdapter);
+        setSwipeRefresher();
+
+    }
+
+    private void refreshContent() {
+        // Shit, is this the best way to do this?!
+        final NewsItemsRecyclerFragment newsItemsRecyclerFragment = this;
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                items.clear();
+                mAdapter = new NewsItemsRecyclerViewAdapter(items, mLayoutInflater);
+                mAdapter.mOnClickListener = newsItemsRecyclerFragment;
+                mRecyclerView.setAdapter(mAdapter);
+                insertTopStories();
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        }, 1000);
     }
 
     @Override
@@ -89,6 +112,9 @@ public class NewsItemsRecyclerFragment extends Fragment
     }
 
     private void init(View v) {
+        mTwoPane = getResources().getBoolean(R.bool.twoPane);
+        mAdapter.mOnClickListener = this;
+
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),
                 DividerItemDecoration.VERTICAL_LIST));
@@ -98,7 +124,6 @@ public class NewsItemsRecyclerFragment extends Fragment
 
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
 
-        insertTopStories();
     }
 
     @Override
@@ -147,6 +172,16 @@ public class NewsItemsRecyclerFragment extends Fragment
         if (mAdapter.getItemCount() <= 0)
             Log.d(TAG, "No items in top stories adapter, getting updated ones.");
             ItemUpdateHelper.getInstance().getTopStories(mAdapter, 0, 30);
+    }
+
+    private void setSwipeRefresher() {
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshContent();
+            }
+        });
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.primary);
     }
 
 }
