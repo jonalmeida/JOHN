@@ -84,7 +84,6 @@ public class ItemUpdateHelper {
         firebaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                int pos = 0;
                 LinkedList<Item> list = new LinkedList<>();
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     final T i = ds.getValue(valueType);
