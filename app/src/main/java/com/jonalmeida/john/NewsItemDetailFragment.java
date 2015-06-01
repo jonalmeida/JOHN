@@ -25,6 +25,24 @@ public class NewsItemDetailFragment extends Fragment {
     private boolean mTwoPane = false;
     private Item mItem;
     private ItemType mItemType = ItemType.Unknown;
+
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param twoPane If the app is in tablet or phone view.
+     * @param item Item passed to WebView. Should be a StoryItem by default.
+     * @return A new instance of fragment WebViewFragment.
+     */
+    public static NewsItemDetailFragment newInstance(Boolean twoPane, Item item) {
+        NewsItemDetailFragment fragment = new NewsItemDetailFragment();
+        Bundle args = new Bundle();
+        args.putBoolean(Constants.ARG_TWO_PANE_MODE, twoPane);
+        args.putParcelable(Constants.ARG_ITEM, item);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).

@@ -129,11 +129,7 @@ public class NewsItemsRecyclerFragment extends Fragment
     public void onStoryClicked(Item i) {
         Log.d(TAG, "We're getting the item here: " + i.getId());
         if (mTwoPane) {
-            Bundle bundle = new Bundle();
-            bundle.putParcelable(Constants.ARG_ITEM, i);
-            bundle.putBoolean(Constants.ARG_TWO_PANE_MODE, mTwoPane);
-            NewsItemDetailFragment fragment = new NewsItemDetailFragment();
-            fragment.setArguments(bundle);
+            NewsItemDetailFragment fragment = NewsItemDetailFragment.newInstance(mTwoPane, i);
             this.getFragmentManager().beginTransaction()
                     .replace(R.id.newsitem_detail_container, fragment)
                     .commit();
