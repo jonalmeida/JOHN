@@ -29,6 +29,7 @@ public class NewsItemDetailFragment extends Fragment {
 
     private boolean mTwoPane = false;
     private Item mItem;
+    private ItemType mItemType = ItemType.Unknown;
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -62,34 +63,14 @@ public class NewsItemDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_newsitem_detail, container, false);
 
         if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.newsitem_detail)).setText(mItem.toString());
 
-            final NewsItemDetailFragment fragment = this;
-
-            WebView webView = (WebView) rootView.findViewById(R.id.web_view);
-
-            configureWebView(webView, rootView);
-
-            webView.loadUrl(((StoryItem) mItem).getUrl());
-//            String data = "<div>\n  \n\n\n\n\n\n\n\n<div class=\"entry\">\n\t<p>When we launched Readability a few weeks ago, we left a whole host of ideas and features on the drawing board. The ideas kept on coming, but we also wanted to go live sooner than later. Now that Readability has launched, we&#x2019;re excited to pick up those ideas and run with them.</p>\n<p>But great ideas don&#x2019;t only come from us. Since we launched, we&#x2019;ve been flooded with great ideas from users via email, Twitter, and other channels. Every time a good idea landed in our laps, we&#x2019;d be excited and then anxious about losing it amidst all the noise&#x2026;until now.</p>\n<p>Introducing <a href=\"http://readability.bonfireapp.com\">Readability Ideas</a>. It&#x2019;s a place where the Readability community &#x2013; both readers and publishers &#x2013; and the Readability team share, talk about and bring ideas to reality. You can log in with your Facebook or Readability account right into Readability Ideas.</p>\n<p>We couldn&#x2019;t be more excited about where we take Readability from here. We look forward to hearing your feedback on how we can make Readability the best reading platform on the web.</p>\n    \n\t\n\n\n \n\n </div>\n</div>";
-//            webView.loadData(data, "text/html; charset=UTF-8", null);
+            NewsItemWebViewFragment fragment = NewsItemWebViewFragment.newInstance(mTwoPane, mItem);
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.newsitem_detail_container, fragment)
+                    .commit();
         }
 
         return rootView;
     }
 
-    private void configureWebView(WebView webView, View rootView) {
-        final ProgressBar progress = (ProgressBar) rootView.findViewById(R.id.web_view_progress_bar);
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setSupportZoom(true);
-        webView.getSettings().setBuiltInZoomControls(true);
-        webView.setWebViewClient(new WebViewClient() {
-            public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                progress.setVisibility(View.VISIBLE);
-            }
-            public void onPageFinished(WebView view, String url) {
-                progress.setVisibility(View.INVISIBLE);
-            }
-        });
-    }
 }

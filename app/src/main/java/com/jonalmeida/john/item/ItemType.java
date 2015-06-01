@@ -30,5 +30,10 @@ public enum ItemType {
         public String toString() {
             return "pollopt";
         }
+    },
+    Unknown {
+        public String toString() {
+            return "unknown";
+        }
     }
 }

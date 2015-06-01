@@ -4,27 +4,27 @@
     android:layout_width="fill_parent"
     tools:context=".NewsItemDetailFragment">
 
-    <TextView
-        android:id="@+id/newsitem_detail"
-        style="?android:attr/textAppearanceLarge"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp"
-        android:visibility="invisible"
-        android:textIsSelectable="true" />
+    <!--<TextView-->
+        <!--android:id="@+id/newsitem_detail"-->
+        <!--style="?android:attr/textAppearanceLarge"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:padding="16dp"-->
+        <!--android:visibility="invisible"-->
+        <!--android:textIsSelectable="true" />-->
 
-    <WebView
-        android:id="@+id/web_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="visible" />
+    <!--<WebView-->
+        <!--android:id="@+id/web_view"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:visibility="visible" />-->
 
-    <ProgressBar
-        android:id="@+id/web_view_progress_bar"
-        android:layout_centerInParent="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="?android:attr/progressBarStyleLarge"
-        android:visibility="gone" />
+    <!--<ProgressBar-->
+        <!--android:id="@+id/web_view_progress_bar"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--style="?android:attr/progressBarStyleLarge"-->
+        <!--android:visibility="gone" />-->
 
 </RelativeLayout>
