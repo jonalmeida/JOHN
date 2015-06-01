@@ -20,12 +20,12 @@ import com.jonalmeida.john.item.StoryItem;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment may implement the
- * {@link NewsItemWebViewFragment.OnFragmentInteractionListener} interface
+ * {@link WebViewFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link NewsItemWebViewFragment#newInstance} factory method to
+ * Use the {@link WebViewFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NewsItemWebViewFragment extends Fragment {
+public class WebViewFragment extends Fragment {
 
     private boolean mTwoPane = false;
     private Item mItem;
@@ -38,10 +38,10 @@ public class NewsItemWebViewFragment extends Fragment {
      *
      * @param twoPane If the app is in tablet or phone view.
      * @param item Item passed to WebView. Should be a StoryItem by default.
-     * @return A new instance of fragment NewsItemWebViewFragment.
+     * @return A new instance of fragment WebViewFragment.
      */
-    public static NewsItemWebViewFragment newInstance(Boolean twoPane, Item item) {
-        NewsItemWebViewFragment fragment = new NewsItemWebViewFragment();
+    public static WebViewFragment newInstance(Boolean twoPane, Item item) {
+        WebViewFragment fragment = new WebViewFragment();
         Bundle args = new Bundle();
         args.putBoolean(Constants.ARG_TWO_PANE_MODE, twoPane);
         args.putParcelable(Constants.ARG_ITEM, item);
@@ -49,7 +49,7 @@ public class NewsItemWebViewFragment extends Fragment {
         return fragment;
     }
 
-    public NewsItemWebViewFragment() {
+    public WebViewFragment() {
         // Required empty public constructor
     }
 
