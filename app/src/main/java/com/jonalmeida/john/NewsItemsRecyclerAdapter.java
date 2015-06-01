@@ -112,7 +112,7 @@ public class NewsItemsRecyclerAdapter
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        private static final String TAG = "Adapter.ViewHolder";
+        private static final String TAG = "StoryList.ViewHolder";
         private PrettyTime prettyTime = new PrettyTime();
 
         public StoryItem mStoryItem;
