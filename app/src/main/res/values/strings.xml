@@ -1,11 +1,14 @@
 <resources>
     <string name="app_name">JOHN</string>
     <string name="app_full_name">Just Another Hacker News</string>
-    <string name="action_settings">Settings</string>
-    <string name="title_newsitem_detail">Story</string>
-    <string name="action_open_menu">Open in browser</string>
-
     <string name="app_full_name_app">Just Another Hacker News App</string>
-    <string name="title_activity_comment_items">Coments</string>
+
+    <string name="title_activity_comment_items">Comments</string>
+    <string name="title_newsitem_detail">Story</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="action_open_browser">Open in browser</string>
+    <string name="action_open_reader">Reader view</string>
+
     <string name="placeholder_comments">Comments go here.</string>
 </resources>
