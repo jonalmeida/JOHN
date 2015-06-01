@@ -62,7 +62,7 @@ public class NewsItemsRecyclerFragment extends Fragment
         View v = inflater.inflate(R.layout.fragment_news_list_layout, container, false);
 
         mLayoutInflater = inflater;
-        mSwipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.activity_main_swipe_refresh_layout);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.fragment_main_swipe_refresh_layout);
         mAdapter = new NewsItemsRecyclerViewAdapter(items, inflater);
 
         insertTopStories();
@@ -114,7 +114,7 @@ public class NewsItemsRecyclerFragment extends Fragment
         mTwoPane = getResources().getBoolean(R.bool.twoPane);
         mAdapter.setOnClickListener(this);
 
-        mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
+        mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_story_list);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),
                 DividerItemDecoration.VERTICAL_LIST));
 
