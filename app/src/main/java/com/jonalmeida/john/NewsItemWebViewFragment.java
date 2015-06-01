@@ -19,7 +19,7 @@ import com.jonalmeida.john.item.StoryItem;
 
 /**
  * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
+ * Activities that contain this fragment may implement the
  * {@link NewsItemWebViewFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link NewsItemWebViewFragment#newInstance} factory method to
