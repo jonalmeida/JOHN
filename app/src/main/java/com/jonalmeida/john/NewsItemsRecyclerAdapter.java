@@ -20,7 +20,7 @@ public class NewsItemsRecyclerAdapter
         extends RecyclerView.Adapter<NewsItemsRecyclerAdapter.ViewHolder>
         implements ItemUpdateHelper.UpdateListener<Item> {
 
-    private static final String TAG = "RecyclerViewAdapter";
+    private static final String TAG = "ItemsRecyclerAdapter";
 
     private LinkedList<Item> mItemsList;
     private LayoutInflater mInflater;
