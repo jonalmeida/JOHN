@@ -1,16 +1,11 @@
 package com.jonalmeida.john;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.jonalmeida.john.item.Item;
 import com.jonalmeida.john.item.ItemType;
@@ -41,11 +36,10 @@ public class NewsItemDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getArguments().containsKey(Constants.ARG_TWO_PANE_MODE)) {
-            mTwoPane = getArguments().getBoolean(Constants.ARG_TWO_PANE_MODE);
-        }
+        if (getArguments() != null) {
 
-        if (getArguments().containsKey(Constants.ARG_ITEM)) {
+            mTwoPane = getArguments().getBoolean(Constants.ARG_TWO_PANE_MODE);
+
             mItem = getArguments().getParcelable(Constants.ARG_ITEM);
 
             if (mItem.getType().equals(ItemType.Story.toString())) {
@@ -64,7 +58,7 @@ public class NewsItemDetailFragment extends Fragment {
 
         if (mItem != null) {
 
-            NewsItemWebViewFragment fragment = NewsItemWebViewFragment.newInstance(mTwoPane, mItem);
+            WebViewFragment fragment = WebViewFragment.newInstance(mTwoPane, mItem);
             getFragmentManager().beginTransaction()
                     .replace(R.id.newsitem_detail_container, fragment)
                     .commit();

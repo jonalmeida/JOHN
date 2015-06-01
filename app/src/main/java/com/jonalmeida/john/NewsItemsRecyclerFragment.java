@@ -41,7 +41,7 @@ public class NewsItemsRecyclerFragment extends Fragment
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.
      */
-    private boolean mTwoPane;
+    private boolean mTwoPane = false;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -150,11 +150,7 @@ public class NewsItemsRecyclerFragment extends Fragment
     public void onCommentClicked(Item i) {
         Log.d(TAG, "We're getting an item's comments here: " + i.getId());
         if (mTwoPane) {
-            Bundle bundle = new Bundle();
-            bundle.putParcelable(Constants.ARG_ITEM, i);
-            bundle.putBoolean(Constants.ARG_TWO_PANE_MODE, mTwoPane);
-            CommentItemsFragment fragment = new CommentItemsFragment();
-            fragment.setArguments(bundle);
+            CommentItemsFragment fragment = CommentItemsFragment.newInstance(mTwoPane, i);
             this.getFragmentManager().beginTransaction()
                     .replace(R.id.newsitem_detail_container, fragment)
                     .commit();
