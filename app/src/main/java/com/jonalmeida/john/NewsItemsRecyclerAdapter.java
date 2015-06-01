@@ -16,8 +16,8 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-public class NewsItemsRecyclerViewAdapter
-        extends RecyclerView.Adapter<NewsItemsRecyclerViewAdapter.ViewHolder>
+public class NewsItemsRecyclerAdapter
+        extends RecyclerView.Adapter<NewsItemsRecyclerAdapter.ViewHolder>
         implements ItemUpdateHelper.UpdateListener<Item> {
 
     private static final String TAG = "RecyclerViewAdapter";
@@ -41,7 +41,7 @@ public class NewsItemsRecyclerViewAdapter
         void onCommentClicked(Item i);
     }
 
-    public NewsItemsRecyclerViewAdapter(List<Item> storyItemList, LayoutInflater inflater) {
+    public NewsItemsRecyclerAdapter(List<Item> storyItemList, LayoutInflater inflater) {
         mItemsList = (LinkedList<Item>) storyItemList;
         mInflater = inflater;
     }

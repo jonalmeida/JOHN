@@ -26,12 +26,12 @@ import java.util.LinkedList;
  * <p/>
  */
 public class NewsItemsRecyclerFragment extends Fragment
-        implements NewsItemsRecyclerViewAdapter.OnListItemClickListener {
+        implements NewsItemsRecyclerAdapter.OnListItemClickListener {
 
     private static final String TAG = "ItemsRecyclerFragment";
 
     private RecyclerView mRecyclerView;
-    private NewsItemsRecyclerViewAdapter mAdapter;
+    private NewsItemsRecyclerAdapter mAdapter;
     private LinearLayoutManager mLinearLayoutManager;
     private LayoutInflater mLayoutInflater;
     private SwipeRefreshLayout mSwipeRefreshLayout;
@@ -63,7 +63,7 @@ public class NewsItemsRecyclerFragment extends Fragment
 
         mLayoutInflater = inflater;
         mSwipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.fragment_main_swipe_refresh_layout);
-        mAdapter = new NewsItemsRecyclerViewAdapter(items, inflater);
+        mAdapter = new NewsItemsRecyclerAdapter(items, inflater);
 
         insertTopStories();
         init(v);
@@ -85,7 +85,7 @@ public class NewsItemsRecyclerFragment extends Fragment
             @Override
             public void run() {
                 items.clear();
-                mAdapter = new NewsItemsRecyclerViewAdapter(items, mLayoutInflater);
+                mAdapter = new NewsItemsRecyclerAdapter(items, mLayoutInflater);
                 mAdapter.setOnClickListener(newsItemsRecyclerFragment);
                 mRecyclerView.setAdapter(mAdapter);
                 insertTopStories();
