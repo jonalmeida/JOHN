@@ -1,5 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:baselineAligned="false"
@@ -8,7 +9,11 @@
     android:showDividers="middle"
     tools:context=".NewsItemRecyclerActivity">
 
-    <include layout="@layout/toolbar"/>
+    <include
+        android:id="@+id/toolbar_actionbar"
+        layout="@layout/toolbar_default"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/drawer_layout"
@@ -27,9 +32,10 @@
         <fragment
             android:id="@+id/fragment_drawer"
             android:name="com.jonalmeida.john.NavDrawerFragment"
-            android:layout_width="@dimen/drawer_width"
+            android:layout_width="@dimen/navigation_drawer_width"
             android:layout_height="match_parent"
-            android:layout_gravity="left|start" />
+            android:layout_gravity="start"
+            app:layout="@layout/fragment_navigation_drawer"/>
 
     </android.support.v4.widget.DrawerLayout>
 

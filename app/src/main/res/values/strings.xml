@@ -11,4 +11,8 @@
     <string name="action_open_reader">Reader view</string>
 
     <string name="placeholder_comments">Comments go here.</string>
+
+    <string name="drawer_open">Menu opened</string>
+    <string name="drawer_close">Menu closed</string>
+    <string name="hello_blank_fragment">Hello, world!</string>
 </resources>
