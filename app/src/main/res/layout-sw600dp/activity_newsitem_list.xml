@@ -8,22 +8,12 @@
     android:showDividers="middle"
     tools:context=".NewsItemRecyclerActivity">
 
-    <include layout="@layout/toolbar"/>
+    <fragment android:id="@+id/newsitem_list"
+        android:name="com.jonalmeida.john.NewsItemsRecyclerFragment" android:layout_width="0dp"
+        android:layout_height="match_parent" android:layout_weight="1.5"
+        tools:layout="@layout/fragment_news_list_layout" />
 
-    <android.support.v4.widget.DrawerLayout
-        android:id="@+id/drawer_layout"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <fragment android:id="@+id/newsitem_list"
-            android:name="com.jonalmeida.john.NewsItemsRecyclerFragment" android:layout_width="0dp"
-            android:layout_height="match_parent" android:layout_weight="1.5"
-            tools:layout="@layout/fragment_news_list_layout" />
-
-        <FrameLayout android:id="@+id/newsitem_detail_container" android:layout_width="0dp"
-            android:layout_height="match_parent" android:layout_weight="2.5" />
-
-    </android.support.v4.widget.DrawerLayout>
+    <FrameLayout android:id="@+id/newsitem_detail_container" android:layout_width="0dp"
+        android:layout_height="match_parent" android:layout_weight="2.5" />
 
 </LinearLayout>
