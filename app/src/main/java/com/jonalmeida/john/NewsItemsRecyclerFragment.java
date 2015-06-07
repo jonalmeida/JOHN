@@ -42,6 +42,7 @@ public class NewsItemsRecyclerFragment extends Fragment
      * device.
      */
     private boolean mTwoPane = false;
+    private RecyclerView itemDecoration;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -115,13 +116,10 @@ public class NewsItemsRecyclerFragment extends Fragment
         mAdapter.setOnClickListener(this);
 
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_story_list);
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),
-                DividerItemDecoration.VERTICAL_LIST));
 
-        mLinearLayoutManager = new LinearLayoutManager(getActivity());
-        mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        setItemDecoration(mRecyclerView);
 
-        mRecyclerView.setLayoutManager(mLinearLayoutManager);
+        setLayoutManager(mRecyclerView);
 
         setScrollListener(mRecyclerView);
 
@@ -201,4 +199,16 @@ public class NewsItemsRecyclerFragment extends Fragment
         });
     }
 
+    private void setLayoutManager(RecyclerView view) {
+        mLinearLayoutManager = new LinearLayoutManager(getActivity());
+        mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
+        view.setLayoutManager(mLinearLayoutManager);
+    }
+
+    public void setItemDecoration(RecyclerView view) {
+        view.addItemDecoration(new DividerItemDecoration(getActivity(),
+                DividerItemDecoration.VERTICAL_LIST));
+
+    }
 }
