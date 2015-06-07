@@ -123,6 +123,8 @@ public class NewsItemsRecyclerFragment extends Fragment
 
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
 
+        setScrollListener(mRecyclerView);
+
     }
 
     @Override
@@ -173,6 +175,30 @@ public class NewsItemsRecyclerFragment extends Fragment
             }
         });
         mSwipeRefreshLayout.setColorSchemeResources(R.color.primary);
+    }
+
+    private void setScrollListener(RecyclerView view) {
+        view.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            int mLastFirstVisibleItem = 0;
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                final int currentFirstVisibleItem = mLinearLayoutManager.findFirstVisibleItemPosition();
+
+                if (currentFirstVisibleItem > this.mLastFirstVisibleItem) {
+                    ((NewsItemsRecyclerActivity) getActivity()).getSupportActionBar().hide();
+                } else if (currentFirstVisibleItem < this.mLastFirstVisibleItem) {
+                    ((NewsItemsRecyclerActivity) getActivity()).getSupportActionBar().show();
+                }
+
+                this.mLastFirstVisibleItem = currentFirstVisibleItem;
+            }
+        });
     }
 
 }
