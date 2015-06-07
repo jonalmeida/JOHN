@@ -29,15 +29,15 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     // Support libraries
-    compile 'com.android.support:appcompat-v7:22.1.1'
-    compile 'com.android.support:support-v4:22.1.1'
+    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.android.support:support-v4:22.2.0'
 
     // Firebase Android API
     compile 'com.firebase:firebase-client-android:2.2.4'
 
     // Various uses for RecyclerViews and CardViews
-    compile 'com.android.support:recyclerview-v7:21.0.0'
-    compile 'com.android.support:cardview-v7:21.0.0'
+    compile 'com.android.support:recyclerview-v7:22.2.0'
+    compile 'com.android.support:cardview-v7:22.2.0'
 
     // For the time stamps
     compile 'org.ocpsoft.prettytime:prettytime:3.2.7.Final'
