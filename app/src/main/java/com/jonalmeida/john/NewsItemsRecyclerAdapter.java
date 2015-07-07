@@ -12,6 +12,8 @@ import com.jonalmeida.john.item.StoryItem;
 
 import org.ocpsoft.prettytime.PrettyTime;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -142,6 +144,22 @@ public class NewsItemsRecyclerAdapter
             author.setText(mStoryItem.getBy());
             descendants.setText(Integer.toString(mStoryItem.getDescendants()));
             time.setText(prettyTime.format(new Date(mStoryItem.getTime() * 1000L)));
+
+            // Accessibility setters
+            URL url1 = null;
+            try {
+                url1 = new URL(mStoryItem.getUrl());
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+                Log.e(TAG, "Malformed URL, using placeholder.");
+            }
+
+            title.setContentDescription(mStoryItem.getTitle());
+            url.setContentDescription(url1 != null ? url1.getHost() : "URL of story here.");
+            score.setContentDescription("Upvoted " + mStoryItem.getScore() + " times.");
+            author.setContentDescription("Author " + mStoryItem.getBy());
+            descendants.setContentDescription(mStoryItem.getDescendants() + " comments.");
+            time.setContentDescription("Posted " + time.getText());
         }
 
     }
